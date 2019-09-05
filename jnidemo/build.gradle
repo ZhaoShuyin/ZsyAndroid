@@ -1,0 +1,74 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+
+    defaultConfig {
+        applicationId "com.zsy.jni"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        //ndk_build方式
+        //设置JNI参数
+        /*ndk {
+            //armeabi 在新版本已被弃用,可能会报错
+            abiFilters "armeabi-v7a", "x86"  //输出指定三种abi体系结构下的so库。目前可有可无。
+            moduleName = 'zsyso'//生成的so名字,只能有一个名字
+        }*/
+        //ndk_build方式
+        //Your project contains C++ files but it is not using a supported native build system.
+        //如果报错则  jni.srcDirs = []
+        /*sourceSets {
+            main {
+                jni.srcDirs = []
+                //  jniLibs.srcDirs=['libs'] 此为设置so库文件位置
+            }
+        }*/
+
+        //Cmake方式
+        //有关 C++ 异常处理的支持 (有关 C++ 异常处理的支持)
+        //支持 RTTI (-frtti)
+        externalNativeBuild {
+            cmake {
+                //arm64-v8a armabi armabi-v7a mips mips64 x86 x86_64 在此设置编译库类型
+                //abiFilters "armeabi-v7a"
+                cppFlags "-frtti -fexceptions"
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        //NDK编译配置
+        externalNativeBuild {
+            //ndk_build方式(从.main/jni/文件夹下执行C编译)
+           /* ndkBuild {
+                path "src/main/jni/Android.mk"
+            }*/
+            //Cmake方式(从.main/app/文件夹下执行C编译)
+            cmake {
+                path "CMakeLists.txt"
+            }
+        }
+    }
+
+}
+
+dependencies {
+    compile rootProject.ext.v7
+    compile rootProject.ext.constraint
+    testCompile rootProject.ext.junit
+//    androidTestCompile('com.android.support.test.espresso:espresso-core:3.0.2', {
+//        exclude group: 'com.android.support', module: 'support-annotations'
+//    })
+
+}

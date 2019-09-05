@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="'http://schemas.android.com/apk/res/android'"
+    android:duration="'5000'"
+    android:ordering="'sequentially'">
+    <!--动画执行顺序 sequentially：顺序执行；together：同时执行。 -->
+
+    <objectanimator
+        android:propertyname="'translationX'"
+        android:valuefrom="'0'"
+        android:valueto="'200'"
+        android:valuetype="'floatType'">
+
+        <set android:ordering="'together'">
+            <objectanimator
+                android:propertyname="'scaleX'"
+                android:valuefrom="'1'"
+                android:valueto="'2'"
+                android:valuetype="'floatType'">
+
+                <objectanimator
+                    android:propertyname="'scaleY'"
+                    android:valuefrom="'1'"
+                    android:valueto="'2'"
+                    android:valuetype="'floatType'">
+
+                </objectanimator>
+            </objectanimator>
+        </set>
+
+    </objectanimator>
+</set>

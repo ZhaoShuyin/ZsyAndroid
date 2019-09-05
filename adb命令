@@ -1,0 +1,120 @@
+https://www.cnblogs.com/bravesnail/articles/5850335.html
+https://www.cnblogs.com/jiangzhaowei/p/8205490.html
+
+
+ADB命令
+    1. adb devices                   <查看连接设备>
+
+    2. adb tcpip 5555                <设置设备端口>
+       adb connect 10.1.2.8:5555     <连接到局域网设备>
+       adb disconenct 10.1.2.8:5555  <断开局域网设备>
+
+    3.adb get-state                  <-查看设备连接状态->
+      device： 设备正常连接
+      offline：连接出现异常，设备无响应
+      unknown：没有连接设备
+
+    4. adb kill-server       <停止adb服务进程>
+       adb start-server      <开启adb服务进程>
+
+    5.adb 日志
+         adb logcat                     <打印默认日志数据>
+         adb logcat -v time             <需要打印日志详细时间的简单数据>
+         adb logcat *:E                 <需要打印级别为Error的信息>
+         adb logcat -v time *:E         <需要打印时间和级别是Error的信息>
+         adb logcat -v time >D:\log.txt <将日志保存到电脑固定的位置>
+
+
+    6. adb push d:\abc\123.png sdcard/abc/                 <推送文件到设备>
+       adb push 安装包.apk /data/local/tmp/com.example.app  <复制安装包到手机内存>
+       adb shell pm install -t -r "/data/local/tmp/com.example.app"   <安装指定目录的安装包>
+       //启动app的启动界面
+       adb shell am start -n "com.example.app/com.example.app.SplashActivity" -a android.intent.action.MAIN -c
+       adb uninstall <包名> <卸载app>
+
+    7. 运行在 Android 设备上的 adb 后台进程
+       adb shell ps | grep adbd (Linux)
+       adb shell ps | findstr adbd (Window)
+
+ADB SHELL
+    1.adb shell 则是调用的 Android 系统中的命令
+       android.intent.category.LAUNCHER<查看设备中所有应用包名>
+       adb shell pm list package -s 系统应用
+                                 -3 第三方应用
+                                 -f 列出应用包名及apk信息
+                                 -i 李处应用包名及安装来源
+    2.adb shell pm (Package Manager)<>
+
+    3.adb shell pm path com.zsy.git  <对应apk安装包位置>
+
+     pm list instrumentation
+
+    5.adb shell pm dump com.zsy.git  <列出指定应用的 dump 信息>
+
+    6.adb install <安装包>     <PC端安装包>
+      adb pm install <安装包>  <手机端安装包>
+      adb uninstall <包名>     <卸载应用>
+
+
+    adb pm get-install-location com.zsy.git
+
+    adb pm set-install-location 0       #由App自行决定软件能否安装在SD卡上
+    adb pm set-install-location 1       #强制全部App安装在ROM内
+    adb pm set-install-location 2       #强制全部App安装在SD卡
+
+AM
+    //
+    adb shell am start -n com.android.camera/.Camera
+
+    //启动默认浏览器打开一个网页
+    adb shell am start -a android.intent.action.VIEW -d http://www.baidu.com
+    //启动拨号器拨打 10086
+    adb shell am start -a android.intent.action.CALL -d tel:10086
+    //按键事件(打开输入法)
+    adb shell input text test123456
+    //点击HOME键
+    adb shell input keyevent KEYCODE_HOME
+    //对屏幕发送一个触摸事件
+    adb shell input tap 500 500
+    //对屏幕发送滑动事件
+    adb shell input swipe 900 500 100 500
+    //在小的距离内，在较长的持续时间内进行滑动，最后表现出来的结果就是长按动作(不低于 4.4)
+    adb shell input swipe 500 500 501 501 2000
+    //屏幕截屏
+    adb shell screencap -p /sdcard/screen.png
+    //屏幕录屏(Ctrl+C结束录屏)
+    adb shell screenrecord sdcard/record.mp4
+    //获取当前屏幕控件信息(保存为window_dump.xml文件,默认为sdcard,可指定位置)
+    adb shell uiautomator dump (sdcard/abc/dump.xml)
+
+    adb shell ime list -s    <列出设备所有输入法>
+    adb shell ime set com.samsung.android.svoiceime/.SamsungVoiceReco   <设置输入法>
+
+    adb shell wm size        <获取设备分辨率>
+
+    adb shell log -p d -t zsytest "test adb shell log"           <自定义log>
+
+    adb shell getprop ro.build.version.sdk   <获取设备SDK版本信息>
+
+
+
+    执行以下命令：
+
+    D:\android-sdks\platform-tools>adb kill-server --停止adb服务
+    D:\android-sdks\platform-tools>adb start-server --开启adb服务
+
+
+    如果启动失败则可查看占用5037端口的程序，并将其进程结束掉即可
+
+
+    >netstat -ano | findstr "5037" --查找占用端口号5037的连接
+
+      TCP    127.0.0.1:58440        127.0.0.1:5037         ESTABLISHED     2376
+
+    进程ID2376占用了端口号，用以下命令查看进程名称
+
+    >tasklist | findstr "2376" --查找进程ID为2376的进程
+
+    最后打开任务管理器，将对应的进程结束，重启adb：adb start-server
+
+

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--自定义Drawable大小的Textview-->
+    <declare-styleable name="DrawTextView">
+        <attr name="drawleft_width" format="dimension" />
+        <attr name="drawleft_height" format="dimension" />
+        <attr name="drawtop_width" format="dimension" />
+        <attr name="drawtop_height" format="dimension" />
+        <attr name="drawright_width" format="dimension" />
+        <attr name="drawright_height" format="dimension" />
+        <attr name="drawbottom_width" format="dimension" />
+        <attr name="drawbottom_height" format="dimension" />
+    </declare-styleable>
+
+</resources>

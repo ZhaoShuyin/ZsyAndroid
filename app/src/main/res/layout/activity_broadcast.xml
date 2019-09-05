@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/broadcast_show"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:gravity="center"
+        android:text="文字" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ddffdf"
+        android:padding="5dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="resgist"
+            android:text="注册广播接受者" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="unresgist"
+            android:text="注册广播接受者" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="BBTA"
+            android:text="发送广播" />
+    </LinearLayout>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="BBTB"
+        android:text="发送无序广播" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <Button
+            android:id="@+id/receiver_a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="注册有序A" />
+
+        <Button
+            android:id="@+id/receiver_b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="注册有序B" />
+
+        <Button
+            android:id="@+id/receiver_c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="注册有序C" />
+
+        <Button
+            android:id="@+id/receiver_d"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="注册有序D" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <Button
+            android:id="@+id/receiver_ua"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="unresgistA"
+            android:text="注销有序A" />
+
+        <Button
+            android:id="@+id/receiver_ub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="unresgistB"
+            android:text="注销有序B" />
+
+        <Button
+            android:id="@+id/receiver_uc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="unresgistC"
+            android:text="注销有序C" />
+
+        <Button
+            android:id="@+id/receiver_ud"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="unresgistD"
+            android:text="注销有序D" />
+    </LinearLayout>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="BBTC"
+        android:text="发送有序广播" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#dfddff">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="BBTD"
+            android:text="动态注册息屏广播" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="BBTE"
+            android:text="注销动态广播" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.zsy.android">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <!--读写内存卡权限-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!--拨打电话权限-->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <!--相机权限-->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
+    <!--读写联系人权限-->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+
+    <!--读取短信权限-->
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.WRITE_SMS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+
+
+    <!--蓝牙必须的权限-->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <!--android6.0以上使用蓝牙需要的权限，否则在Android6.0以上的手机扫描不到蓝牙设备-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="com.zsy.android.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!--Activity相关属性-->
+        <activity android:name=".layout.activity.ActivityMain" />
+        <!--Fragment的使用-->
+        <activity android:name=".layout.fragment.BaseFragmentActivity" />
+        <!--自定义View-->
+        <activity android:name=".view.view.CustomViewActivity" />
+        <!--屏幕适配-->
+        <activity android:name="com.zsy.android.layout.screenmatch.ScreenMatchActivity" />
+        <!--服务-->
+        <activity android:name=".base.service.ServiceActivity" />
+        <service android:name=".base.service.ZService"/>
+        <!--广播-->
+        <activity android:name=".base.broadcast.BroadcastActivity" />
+        <!--提供者-->
+        <activity android:name=".base.contentprovider.ContentProviderActivity" />
+        <!--Content提供者 (联系人,短信操作)-->
+        <provider
+            android:name=".base.contentprovider.MyProvider"
+            android:authorities="cn.zsy.provider"
+            android:exported="true"></provider>
+
+        <!--jni-->
+        <activity android:name="com.zsy.jni.JniActivity" />
+        <!--相机-->
+        <activity android:name="com.zsy.android.api.camera.CameraActivity" />
+        <!--输入法软键盘
+           android:configChanges="orientation|keyboardHidden|screenSize" 起始隐藏软键盘
+           android:windowSoftInputMode="stateVisible|adjustResize" 屏幕整体上移
+           adjustNothing,adjustResize 输入框可能被遮挡
+           adjustPan,stateVisible,保证输入框可见
+       -->
+        <activity
+            android:name=".api.keyboard.KeyboardActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="adjustPan" />
+        <!--数据库Sqlite-->
+        <activity android:name=".base.db.SqliteActivity" />
+        <receiver android:name=".api.alarm.AlarmBroadCast">
+            <intent-filter>
+                <action android:name="zsyrecivcer"></action>
+            </intent-filter>
+        </receiver>
+
+
+
+        <activity android:name=".view.animation.AnimationActivity" />
+        <activity android:name=".function.net.BaseNetnctivity"/>
+
+        <activity android:name="com.zsy.android.layout.fragment.ShowHideFragmentActivity" />
+        <activity android:name="com.zsy.android.layout.fragment.ViewpagerFragmentActivity" />
+
+
+        <!--ListView-->
+        <activity android:name=".layout.listview.SimpleListViewActivity" />
+        <activity android:name=".layout.listview.ListViewNestedActivity" />
+
+        <!--RecyclerView-->
+        <activity android:name=".layout.recyclerview.SimpleRecyclerViewActivity" />
+        <activity android:name=".layout.recyclerview.drag.RecDragActivity" />
+        <activity android:name=".layout.recyclerview.group.RecGroupActivity" />
+
+        <!--Layout_View-->
+        <activity android:name=".layout.viewpager.ViewPagerActivity" />
+        <activity android:name=".layout.coordinate.CoordinateActivity" />
+
+        <activity android:name=".function.drawboard.DrawBoardActivity" />
+
+        <!--surefaceview简单测试-->
+        <activity android:name=".sureface.dem.testSurfaceView" />
+        <activity android:name=".sureface.SurfaceActivity" />
+        <activity android:name=".sureface.game.GameActivity" />  <!--surefaceview人物走动-->
+
+        <!--闹钟服务-->
+        <activity android:name=".api.alarm.AlarmActivity" />
+        <!--AsyncTask的使用-->
+        <activity android:name=".function.AsyncTaskActivity" />
+
+
+        <!--通过Router跳转不知名Activity-->
+        <activity android:name=".layout.activity.router.ActivityRouter" />
+
+        <!--文字自动补全-->
+        <activity android:name=".api.view.ApiActivity">
+            <intent-filter>
+                <action android:name="dakaduobao.goods" />
+                <data android:scheme="goods" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!--XML约束解析-->
+        <activity android:name=".function.xml.XmlActivity" />
+
+
+        <!--Aidl 配置服务意图供其他应用调用-->
+        <service android:name=".base.aidl.AidlService">
+            <intent-filter>
+                <action android:name="cn.zsy.aidl" />
+            </intent-filter>
+        </service>
+        <!--Aidl 配置服务意图供其他应用调用-->
+        <service android:name=".base.aidl.BookManagerService">
+            <intent-filter>
+                <action android:name="cn.zsy.aidl.book" />
+            </intent-filter>
+        </service>
+
+
+        <activity android:name=".base.contentprovider.SmsAndContactActivity" />
+        <!--*****************************************************************************************************-->
+        <!-- 注册短信各种服务,设置为短信默认程序才可以插入短信 -->
+        <receiver
+            android:name=".base.contentprovider.sms.SmsReceiver"
+            android:permission="android.permission.BROADCAST_SMS">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_DELIVER" />
+            </intent-filter>
+        </receiver>
+        <!--BroadcastReceiver that listens for incoming MMS messages-->
+        <receiver
+            android:name=".base.contentprovider.sms.MmsReceiver"
+            android:permission="android.permission.BROADCAST_WAP_PUSH">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.WAP_PUSH_DELIVER" />
+                <data android:mimeType="application/vnd.wap.mms-message" />
+            </intent-filter>
+        </receiver>
+        <!--Activity that allows the user to send new SMS/MMS messages-->
+        <activity
+            android:name=".base.contentprovider.sms.ComposeSmsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <action android:name="android.intent.action.SENDTO" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="sms" />
+                <data android:scheme="smsto" />
+                <data android:scheme="mms" />
+                <data android:scheme="mmsto" />
+            </intent-filter>
+        </activity>
+        <!--Service that delivers messages from the phone "quick response"-->
+        <service
+            android:name=".base.contentprovider.sms.HeadlessSmsSendService"
+            android:exported="true"
+            android:permission="android.permission.SEND_RESPOND_VIA_MESSAGE">
+            <intent-filter>
+                <action android:name="android.intent.action.RESPOND_VIA_MESSAGE" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="sms" />
+                <data android:scheme="smsto" />
+                <data android:scheme="mms" />
+                <data android:scheme="mmsto" />
+            </intent-filter>
+        </service>
+        <!--*****************************************************************************************************-->
+
+        <!--作为文件打开的默认程序-->
+        <activity android:name=".api.def.DefaultProgramActivity">
+            <intent-filter
+                android:scheme="http"
+                tools:ignore="AppLinkUrlError">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
+
+
+    </application>
+
+</manifest>

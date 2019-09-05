@@ -1,0 +1,40 @@
+参考
+https://www.cnblogs.com/lao-liang/p/9418818.html?utm_source=debugrun&utm_medium=referral
+首先
+ 需要配置 ndk_build环境变量
+ D:\Android\android-ndk-r8
+
+External Tool 配置
+1.自动执行 javah命令 生成 .h 文件
+==============================================================
+Tool
+ Name:        javah     Group: External Tools
+ Description: javah
+
+ Option
+ <V>Synchronize files after execution       <V> Open console
+
+ Program:
+        C:\Program Files\Java\jdk1.8.0_181\bin\javah.exe
+ Parameters:
+        $FileClass$
+ Working directory:
+        $ModuleFileDir$\src\main\java
+=================================================================
+
+2.ndk-build编译脚本
+=================================================================
+Tool
+ Name:        ndk-build     Group: External Tools
+ Description: ndk-build
+
+ Option
+ <V>Synchronize files after execution       <V> Open console
+
+ Program:
+        D:\Android\android-ndk-r8\ndk-build.cmd
+ Parameters:
+        $FileClass$
+ Working directory:
+        $ModuleFileDir$\src\main\jni
+=====================================================================

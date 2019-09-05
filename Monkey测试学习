@@ -1,0 +1,2 @@
+MONKEY
+     adb shell monkey -p com.zsy.git 1000  <>

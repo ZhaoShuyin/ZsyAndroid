@@ -1,0 +1,15 @@
+Android.mk 是一个makefile配置文件
+
+*******************************
+LOCAL_PATH := $(call my-dir)   //Build System提供的宏函数 my-dir
+
+include $(CLEAR_VARS)          //
+
+LOCAL_MODULE    := <编译的so库文件名称>
+
+LOCAL_SRC_FILES := <包含的c文件1> <包含的c文件2>
+
+LOCAL_LDLIBS :=  -L$(SYSROOT)/usr/lib -llog   //此变量包含构建共享库或可执行文件时链接库
+
+include $(BUILD_SHARED_LIBRARY)
+*********************************

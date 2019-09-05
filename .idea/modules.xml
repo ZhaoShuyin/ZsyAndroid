@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Bluetooth/Bluetooth.iml" filepath="$PROJECT_DIR$/Bluetooth/Bluetooth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ZsyAndroid.iml" filepath="$PROJECT_DIR$/ZsyAndroid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/apiDemo/apiDemo.iml" filepath="$PROJECT_DIR$/apiDemo/apiDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/assist/assist.iml" filepath="$PROJECT_DIR$/assist/assist.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jnidemo/jnidemo.iml" filepath="$PROJECT_DIR$/jnidemo/jnidemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mavenlib/mavenlib.iml" filepath="$PROJECT_DIR$/mavenlib/mavenlib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rxokretrofit/rxokretrofit.iml" filepath="$PROJECT_DIR$/rxokretrofit/rxokretrofit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/structure/structure.iml" filepath="$PROJECT_DIR$/structure/structure.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vitamio_lib/vitamio_lib.iml" filepath="$PROJECT_DIR$/vitamio_lib/vitamio_lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zlib/zlib.iml" filepath="$PROJECT_DIR$/zlib/zlib.iml" />
+    </modules>
+  </component>
+</project>

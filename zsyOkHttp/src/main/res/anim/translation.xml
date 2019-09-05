@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="30000"
+    android:fillAfter="true">
+    <!-- 设置从左边拖出去的动画 -->
+    <translate
+        android:fromXDelta="0"
+        android:toXDelta="-100%p"
+        />
+</set>

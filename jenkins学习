@@ -1,0 +1,42 @@
+https://www.cnblogs.com/sun-frederick/p/4762804.html
+https://www.jianshu.com/p/dc78cbf5080d
+
+1.安装jenkins
+
+2.下载自动构建插件
+
+3.使用文件C:\Users\zsy\.jenkins\secrets\initialAdminPassword文件进行登录初始化
+  配置管理账户默认地址http://localhost:8080/jenkins/
+
+4.下载插件
+  路径:C:\Users\zsy\.jenkins\plugins
+
+5.开始创建一个新任务
+  构建一个自由风格的软件项目
+
+6.全局配置环境变量
+  系统管理 - 全局工具配置
+            JDK installations :     Name:JAVA_HOME
+                                    JAVA_HOME:C:\Java\jdk1.8.0_181
+            Git installations :     Name:Git
+                                    Path to Git executable:C:\Program Files\Git\bin\git.exe
+            Gradle installations:   name:gradle3.3
+                                    GRADLE_HOME:D:\AndroidStudio\gradle\gradle-3.3
+
+7. A.General
+       丢弃旧的构建 : 可选择apk保存时限
+       参数化构建过程 -> 选项参数 :可配置构建参数
+
+   B.任务(Project)地址配置
+                  Git          Repository URL  :(Git项目地址)
+                               Credentials     :(Git账号配置)
+                  Subversion   Repository URL  :(SVN项目地址)
+                               Credentials     :(SVN账号配置)
+   C.Build
+          Invoke Gradle script
+                              a.Invoke Gradle
+                                gradle version : 选择全局配置的gradle
+                              b.Use Gradle Wrapper
+                                wrapper location :${WORKSPACE}\<项目名称>
+                                tasks            :clean assembleRelease
+8.Build with Parameters 进行构建

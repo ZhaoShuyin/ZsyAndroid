@@ -1,0 +1,40 @@
+apply plugin: 'maven' //添加Maven发布插件
+
+//配置版本名称
+//def versionName = "${android.defaultConfig.versionName}-RELEASE"
+def versionName = "${android.defaultConfig.versionName}-SNAPSHOT"
+//配置指定(工艺)名
+def artifactName = "${repositoryArtifact}-face"
+
+//设定上传任务
+uploadArchives {
+    //仓库配置
+    repositories {
+        //maven部署配置
+        mavenDeployer {
+            //上传正式包资源到Maven私服
+            repository(url: releaseRepositoryUrl) {
+                authentication(userName: repositoryUserName, password: repositoryPassword)
+            }
+            //上传测试包资源到Maven私服
+            snapshotRepository(url: snapshotRepositoryUrl) {
+                authentication(userName: repositoryUserName, password: repositoryPassword)
+            }
+            //pom属性配置
+            pom.project {
+                //版本名
+                version versionName
+                //指定(工艺)名
+                artifactId artifactName
+                //包名
+                groupId repositoryGroup
+                //类型
+                packaging 'aar'
+            }
+        }
+
+       //
+
+    }
+}
+

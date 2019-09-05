@@ -1,0 +1,19 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zsy.zlib">
+    <!---->
+    <!-- <uses-permission android:name="android.permission.CALL_PHONE" />-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application>
+        <!--grantUriPermissions必须是true，表示授予 URI 临时访问权限-->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.zsy.zlib.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+    </application>
+</manifest>

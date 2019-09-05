@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--未设置的默认路径
+    content://com.zsy.android.provider/external_storage_root/Android/data/com.zsy.android/cache/111.jpg-->
+
+    <!--设置后的使用路径
+    content://com.zsy.android.provider/files_root/cache/111.jpg-->
+
+    <external-path
+        name="files_root"
+        path="Android/data/com.zsy.zlib/" />
+    <external-path
+        name="external_storage_root"
+        path="." />
+
+
+
+    <!--Context.getFilesDir() 位于/data/data/安装目录-->
+   <!-- <files-path name="internalPath" path="file" />-->
+    <!--Context.getCacheDir()-->
+   <!-- <cache-path name="cachePath" path="file" />-->
+    <!--Environment.getExternalStorageDirectory()-->
+    <!--<external-path name="externalPath" path="file" />-->
+    <!--Context.getExternalFilesDir(null)-->
+ <!--   <external-files-path name="externalFPath" path="file" />-->
+</paths>

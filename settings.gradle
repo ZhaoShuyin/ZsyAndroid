@@ -1,0 +1,7 @@
+include ':app', ':zlib', ':assist', ':mavenlib', ':Bluetooth', ':vitamio_lib', ':structure'//, ':StickHeader', ':StickyHeader', ':pinnedheader', ':Pinned'
+//include ':zsyOkHttp',':base-diskcache-master', ':viewslib', ':MPChartLib'//,
+include ':apiDemo'
+//include ':rxjava'
+include ':rxokretrofit'
+include ':jnidemo'
+//include ':vitamio_lib'

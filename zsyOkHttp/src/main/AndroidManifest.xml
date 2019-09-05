@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="cn.azsy.zstokhttp">
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>-->
+    <!--判断是否在后台的权限-->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <application
+        android:name=".MyApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!---->
+        <activity android:name=".webjs.WebJsActivity">
+            <intent-filter>
+                <!--协议部分，随便设置-->
+                <data
+                    android:host="goods"
+                    android:path="/goodsDetail"
+                    android:port="8888"
+                    android:scheme="xl" />
+                <!--下面这几行也必须得设置-->
+                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+        </activity>
+        <!---->
+        <activity android:name=".zsyokhttp.zok.cookietest.CookieTestActivity" />
+        <!---->
+        <activity android:name=".jsonparse.JsonParseActivity" />
+        <!---->
+        <activity android:name=".views.ViewsActvity" />
+        <!---->
+        <activity android:name=".recycleview.RecycleActivity" />
+        <!---->
+        <activity android:name=".zsyoktest.ZsyOkTestActivity">
+            <intent-filter>
+                <action android:name="net.action.b.main" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!---->
+        <activity android:name=".customswipe.CustomSwipeActivity" />
+        <!---->
+        <activity android:name=".jnitest.JniTestActivity" />
+        <!---->
+        <activity android:name=".database.DataBaseActivity" />
+        <!---->
+        <activity android:name=".animation.AnimationActivity" />
+        <!---->
+        <activity android:name=".chart.ChartActivity" />
+        <!---->
+        <activity android:name=".surface.SurfaceActivity" />
+        <!---->
+        <activity android:name=".utiltest.UtilsTestActivity" />
+        <activity android:name=".utiltest.UtilsTestActivity2" />
+        <!---->
+        <activity android:name=".surface.dem.testSurfaceView" />
+        <!---->
+        <activity android:name=".game.GameActivity" />
+        <!---->
+        <activity android:name=".judgeapear.JudgeApearActivity" />
+
+
+        <!---->
+        <activity android:name=".service.ServiceActivity" />
+        <service android:name=".service.ZService"></service>
+
+
+        <!---->
+        <activity android:name=".broadcast.BroadcastActivity" />
+
+
+        <!---->
+        <activity android:name=".textureview.TextureViewUI" />
+
+
+        <receiver android:name=".broadcast.ABroadCastReceiver">
+            <intent-filter android:priority="1000">
+                <action android:name="abrecivcer"></action>
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".broadcast.BBroadCastReceiver">
+            <intent-filter android:priority="800">
+                <action android:name="abrecivcer"></action>
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".broadcast.CBroadCastReceiver">
+            <intent-filter android:priority="700">
+                <action android:name="abrecivcer"></action>
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".broadcast.DBroadCastReceiver">
+            <intent-filter android:priority="600">
+                <action android:name="abrecivcer"></action>
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".broadcast.ZBroadCastReceiver">
+            <intent-filter>
+                <action android:name="zbrecivcer"></action>
+            </intent-filter>
+        </receiver>
+
+
+        <!---->
+        <activity android:name=".provide.ProvideActivity" />
+
+
+        <!---->
+        <activity android:name=".generic.GenericActivity" />
+
+
+        <activity android:name=".upprogress.UpProgressUI" />
+
+    </application>
+
+</manifest>

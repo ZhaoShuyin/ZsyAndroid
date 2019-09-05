@@ -1,0 +1,166 @@
+<Git> 保存的不是文件差异或者变化量，而只是一系列文件快照（每当文件有变化时就创建一个快照）
+
+1.  使用git add 添加到<暂存区>
+
+   //暂存操作会对每一个文件计算校验和（ SHA-1 哈希字串），
+   //然后把当前版本的文件快照保存到 Git 仓库中（Git 使用blob 类型的对象存储这些快照），
+   //并将校验和加入暂存区域
+
+    A.$ git checkout -- 文件名(可以暂存区覆盖工作区)(切换本地分支)
+    B.$ git reset HEAD -- 文件名 (本地仓库覆盖暂存区)
+
+    add被锁  .git 删除 index.lock文件
+    参考https://blog.csdn.net/qq_32193151/article/details/70792594
+
+2.  使用 git commit -m "本次提交的注释" 提交到本地仓库
+
+    A. git commit --amend    (撤销上一次提交  并将暂存区文件重新提交)
+       a. C键开始编辑 b. Esc键退出编辑  c. ZZ覆盖提交,退出
+    B. git diff HEAD -- file1.txt    //(使用命令查看工作区和暂存区区别)
+
+3.  版本回退
+    A.使用 < git log > 查看提交(commit)信息 (git log --pretty=oneline) (Q键退出查看状态)
+
+    B.使用< git reflog >可以查看所有分支的所有操作记录（包括已经被删除的 commit 记录和 reset 的操作）
+         Git 1.8.5版本之后，HEAD有一个缩写形式@
+
+    C. git reset --hard ae7c953 //回滚到指定版本
+
+        < git fsck --lost-found >
+         版本恢复后.被覆盖的文件可以通过命令(路径为.git/lost-found/other)
+         参考(https://www.cnblogs.com/hope-markup/p/6683522.html)
+
+     D git revert HEAD          //取消(返回上上次)上次提交
+       git revert HEAD^         //取消(返回上上山次提交)
+       git revert HEAD <HEAD>    //取消(指定版本的上次提交)
+       git revert --abort (取消回滚操作)
+
+4. 远程仓库
+       //关联远程仓库
+      $ git remote add origin http://10.1.1.18:3000/zsy/gittest.git
+       //推送到远程仓库
+      $ git push -u origin master
+       // -f (force强制推送,覆盖远程仓库)
+      $ git push -f origin master
+        //设置当前分支远程仓库(pull push)的关联分支(默认推送远程地址,只对当前分支有效)
+      $ git branch --set-upstream <remote> <branch>
+      //推动分支到远程不同分支
+      git push origin dev(本地):master(远程)
+      //删除现有远程仓库地址
+      $ git remote rm origin
+      //添加远程仓库地址
+      $ git remote add origin <URL>
+      //切换远程仓库地址
+      $ git remote set-url origin <URL>
+
+5.  仓库分支
+    $ git checkout              //切换分支
+    $ git checkout -b dev       //创建分支,并切换到该分支
+                                 == $ git branch dev
+                                 == $ git checkout dev
+    //推送分支到远程分支(远程如无则自动创建,不是当前分支也可推送)
+    $ git push origin dev:dev
+    //强制推送不同分支到远程不同分支(远程如无则自动创建)
+    $ git push -f <远程仓库名> <本地分支>:<d远程分支>
+    $ git merge <分支名>                //命令用于合并指定分支到当前分支。
+    $ git branch -D <分支名>            //删除分支-D也可以是--delete
+    $ git push origin -d <分支名>       //删除远程分支 -d也可以是--delete
+    $ git commit -a                    //(编辑合并后的冲突问题)
+    $ git checkout -b <本地分支名> <远程仓库名>/<远程分支名> //拉取远程分支创建本地分支
+
+    https://blog.csdn.net/xiezhongyuan07/article/details/82458603
+    fork 派生不同用户的仓库到另一个用户仓库中
+
+6. BUG分支使用
+     git merge --no-ff -m "合并bug修复分支到主干" issue-101
+
+     $ git stash                 //储藏当前工作区状态
+     $ git stash list            //查看所有储藏的状态
+     $ git stash apply stash@{0} //恢复到指定的储藏状态
+     $ git stash drop            //删除某个储藏状态
+     $ git stash pop             //恢复最近储藏状态,并删除记录
+
+     $ git log --graph --pretty=oneline --abbrev-commit //查看各个分支提交记录
+
+7.  标签的使用(类似)
+    $ git tag                          //查看所有标签
+    $ git tag 便签名 HEAD名             //为某个版本指定标签(HEAD名必须全称)
+    $ git tag -a <便签名> -m "说明信息"
+
+    $ git push origin 标签名            //可以推送到远程指定标签的版本
+    $ git push origin --tags           //推送所有标签到远程仓库
+
+    $ git tag -d v0.1                  //删除某个标签
+    $ git push origin :refs/tags/v0.9  //删除远程仓库标签
+
+8.  SSH 配置问题
+    $ ssh -T git@github.com
+    The authenticity of host 'github.com (52.74.223.119)' can't be established.
+    RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
+    Are you sure you want to continue connecting (yes/no)? yes                 //选择yes生成known_hosts文件
+    Warning: Permanently added 'github.com,52.74.223.119' (RSA) to the list of known hosts.
+    Enter passphrase for key '/c/Users/meridian/.ssh/id_rsa':                  //输入公钥密码
+    Hi ZhaoShuyin! You've successfully authenticated, but GitHub does not provide shell access.
+
+    // 生成了缺少了的known_hosts文件,known_hosts文件可以储存多个远程仓库地址配置
+    // 参考https://blog.csdn.net/wbiokr/article/details/73431199
+
+    //https://vimsky.com/article/3679.html
+    git fetch --all  //git fetch从远程下载最新的，而不尝试合并或rebase任何东西
+    git reset --hard origin/master
+    git reset --hard origin/<branch_name>
+
+9.  配置GitHub
+      路径 C:\Users\用户\.ssh 下
+      $ ssh-keygen -t rsa -C "zhaoshuyin89@163.com"
+      在 GitHub -> Setting 中添加 SSH key
+
+10.  码云使用(与GitHub相似)
+    1.配置 SSH
+    2.创建新仓库git@gitee.com:zhaoshuyin/ZsyGit.git
+    3 未关联分支推送时报错
+    fatal: refusing to merge unrelated histories
+    fatal: The current branch master has no upstream branch
+    参考 https://blog.csdn.net/benben_2015/article/details/78803753
+
+    $ git push <远程仓库名(origin)> <远程分支名(master)>
+    $ git push --set-upstream origin master    //推送特定远程仓库master分支
+
+11. 同时关联多个远程地址(fork项目)
+    $ git remote -v    //查看所有关联的远程仓库
+    $ git remote add <远程仓库名称> <远程仓库地址>
+    $ git push <远程仓库名称> <master(分支名称)>
+    $ git pull <远程仓库名称> <远程分支名称>
+
+    如果关联多个仓库则需要选择推送到哪个远程仓库
+    同理pull也需要选择 哪个远程仓库与分支名称
+
+    为多个远程仓库配置同一名称(配置文件中配置)
+    [remote "all"]
+    url = git@github.com:ZhaoShuyin/ZsyWeb.git
+    url = git@gitee.com:zhaoshuyin/ZsyWeb.git
+
+    fork项目同步上游代码
+    1.   git remote add upstream <上游地址> //添加上游仓库作为另一个远程仓库
+    2.   git fetch upstream                //下载不合并
+    3.1. git checkout -b dev               //方法一
+         git pull upstream master
+         git checkout master
+         git merge dev
+    3.2  git merge upstream/master          //方法二
+
+    4.git push                              //push到fork仓库
+
+12.  自定义Git命令 (GIT配置)
+   $ git config --global color.ui true
+
+   .gitignore文件
+
+   //配置快捷键(设置status为st)
+     $ git config --global alias.st status
+   //last显示上一次提交
+     $ git config --global alias.last 'log -1
+   //配置多彩的log显示
+     $ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+   //
+   C:\Users\用户\.gitconfig文件为全局配置信息

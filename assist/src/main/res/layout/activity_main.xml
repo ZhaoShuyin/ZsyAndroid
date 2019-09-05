@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.assist.MainActivity">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="#0dddff"
+        android:onClick="openOtherActiity"
+        android:text="打开其他应用界面" />
+
+    <TextView
+        android:id="@+id/tv_show"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:text="Hello World!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/bt_01"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="测试远程依赖功能" />
+
+
+    <Button
+        android:id="@+id/bt_aidl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="AIDL" />
+
+    <Button
+        android:id="@+id/bt_content_resolver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Content解析者" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/bt_content_observer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="注册观察者" />
+
+        <Button
+            android:id="@+id/bt_content_observer_false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="注销观察者" />
+
+    </LinearLayout>
+
+</LinearLayout>

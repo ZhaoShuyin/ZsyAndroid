@@ -1,0 +1,35 @@
+参考  https://www.cnblogs.com/duojia/p/4565243.html
+      https://www.cnblogs.com/exmyth/p/5693153.html
+      https://blog.csdn.net/hexuan1/article/details/47662781
+
+A. 首先安装Nexus(nexus-2.2-01版本)
+   配置JavaSDK地址(jdk1.7.0_67版本)
+   <C:\nexus-2.2-01\bin\jsw\conf\wrapper.conf>
+   <wrapper.java.command=C:\Java\jdk1.7.0_67\bin\java>
+
+B. 启动
+   console-nexus.bat    //暂时启动nexus服务
+   install-nexus.bat    //添加到window服务,开机自启动
+   nexus.bat
+   start-nexus.bat      //启动服务
+   stop-nexus.bat       //停止服务
+   uninstall-nexus.bat  //卸载window中nexus服务
+   启动,如有冲突查看端口号冲突
+   netstat   -aon|findstr "8081"
+
+C. 访问
+   http://localhost:8081/nexus
+   默认账户<admin>
+   默认密码<admin123>
+
+D. 上传
+   gradle.properties  配置
+   mavenlib           示例
+   build-nexus.gradle 上传任务
+
+E. 使用依赖
+   compile 'com.zsy.maven:zsy-test-test-face:2.0-SNAPSHOT'
+
+
+
+

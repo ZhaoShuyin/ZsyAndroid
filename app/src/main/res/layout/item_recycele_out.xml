@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:background="#DDD"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_item_out"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="外层RecyclerView"
+        android:background="#969"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rec_out_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

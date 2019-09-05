@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">ZsyOkHttp</string>
+
+    <!--弹窗列表使用文字-->
+    <!--数据类型：福利 | Android | iOS | 休息视频 | 拓展资源 | 前端-->
+    <string-array name="gankHeadLineTypes">
+        <item>Android</item>
+        <item>iOS</item>
+        <item>休息视频</item>
+        <item>拓展资源</item>
+        <item>前端</item>
+    </string-array>
+</resources>
