@@ -26,6 +26,10 @@ public class MainActivity extends Activity {
         });
     }
 
+    public void linked(View view) {
+        startActivity(new Intent(this, LinkedActivity.class));
+    }
+
     public void binary(View view) {
         startActivity(new Intent(this, BinaryActivity.class));
     }

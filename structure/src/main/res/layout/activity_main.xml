@@ -8,6 +8,12 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="linked"
+        android:text="链表"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:onClick="binary"
         android:text="二叉树"/>
 
@@ -16,6 +22,8 @@
         android:layout_height="wrap_content"
         android:onClick="redblack"
         android:text="红黑树"/>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,12 +34,14 @@
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:layout_margin="10dp"
-            android:background="#FFF"/>
+            android:background="#FFF"
+            android:visibility="gone"/>
     </LinearLayout>
 
     <zsy.structure.view.PathView
         android:id="@+id/pathview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFF"/>
+        android:background="#FFF"
+        android:visibility="gone"/>
 </LinearLayout>

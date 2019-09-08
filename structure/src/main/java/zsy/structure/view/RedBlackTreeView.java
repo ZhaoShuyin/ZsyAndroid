@@ -14,7 +14,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Title zsy.myapp.view
+ * Title: 红黑树
+ * https://www.jianshu.com/p/e136ec79235c             (30张图带你彻底理解红黑树)
+ * https://www.cnblogs.com/newobjectcc/p/11293689.html(数据结构之红黑树-动图演示(上))
+ * https://www.cnblogs.com/newobjectcc/p/11295652.html(数据结构之红黑树-动图演示(下))
+ * 性质1：节点为黑色或者红色。
+ * 性质2：根节点是黑色。
+ * 性质3：每个叶子节点（NIL）是黑色。
+ * 性质4：每个红色结点的两个子结点一定都是黑色。
+ * 性质5：任意结点到每个叶子结点的路径都包含数量相同的黑结点
+ * 红黑树的生长是自底向上的
  *
  * @author Zsy
  * @date 2019/9/7.
@@ -124,6 +133,7 @@ public class RedBlackTreeView extends View {
         String text = String.valueOf(node.key);
         float tW = textPaint.measureText(text);
         canvas.drawText(text, node.x - tW / 2, node.y + tH / 3, textPaint);
+        Log.e(TAG, "绘制节点: "+node.key );
         if (node.left == nil | node.right == nil) {
             drawNuiNode(canvas, node); //绘制叶子节点
         }
@@ -290,7 +300,7 @@ public class RedBlackTreeView extends View {
             }
         }
         addNode.parent = upstream;
-        if (addNode.key < compile.key) {
+        if (addNode.key < upstream.key) {
             upstream.left = addNode;
         } else {
             upstream.right = addNode;
