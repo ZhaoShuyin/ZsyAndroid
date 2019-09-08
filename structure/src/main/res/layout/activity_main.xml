@@ -8,11 +8,30 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="二叉树"
-        android:onClick="binary"/>
+        android:onClick="binary"
+        android:text="二叉树"/>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="红黑树"
-        android:onClick="redblack"/>
+        android:onClick="redblack"
+        android:text="红黑树"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#DDD">
+
+        <zsy.myapp.view.FontView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_margin="10dp"
+            android:background="#FFF"/>
+    </LinearLayout>
+
+    <zsy.myapp.view.PathView
+        android:id="@+id/pathview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFF"/>
 </LinearLayout>

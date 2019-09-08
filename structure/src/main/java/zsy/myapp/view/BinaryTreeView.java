@@ -478,7 +478,6 @@ public class BinaryTreeView extends View {
             canvas.drawPath(findPath, pathPaint);
         }
         if (hasTraverse && traversePath != null) {
-            Log.e(TAG, ">>>>> 绘制遍历路径: ");
             canvas.drawPath(traversePath, traversePaint);
             int bottom = mH - radius * 3;
             int startX = 0;
