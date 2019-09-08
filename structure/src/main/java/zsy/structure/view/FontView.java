@@ -1,4 +1,4 @@
-package zsy.myapp.view;
+package zsy.structure.view;
 
 import android.content.Context;
 import android.graphics.Canvas;

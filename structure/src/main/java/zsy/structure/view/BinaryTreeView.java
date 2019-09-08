@@ -1,4 +1,4 @@
-package zsy.myapp.view;
+package zsy.structure.view;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;

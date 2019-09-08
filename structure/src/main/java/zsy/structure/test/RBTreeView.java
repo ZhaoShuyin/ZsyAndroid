@@ -1,4 +1,4 @@
-package zsy.myapp.view;
+package zsy.structure.test;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -9,7 +9,6 @@ import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package zsy.myapp.view;
+package zsy.structure.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -39,7 +39,6 @@ public class RedBlackTreeView extends View {
 
     private final Node nil = new Node(-1); //叶子节点
     private Node treeRoot = null;              //根节点
-
 
     public RedBlackTreeView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -82,19 +81,21 @@ public class RedBlackTreeView extends View {
             drawNode(canvas, treeRoot); //绘制基本结构
         }
         if (mPath != null) {
-            Log.e(TAG, "=======绘制==========路径===========");
             canvas.drawPath(mPath, pathPaint);
             mPath = null;
         }
-        for (int i = 0; pathNodes.size() != 0 && i < pathNodes.size(); i++) {
-            Node node = pathNodes.get(i);
-            int cx = radius * i * 2 + radius;
-            int height = mH - this.radius * 5;
-            nPaint.setColor(0xffddddff);
-            canvas.drawCircle(cx, height, radius, nPaint);
-            String text = String.valueOf(node.key);
-            float tW = textPaint.measureText(text);
-            canvas.drawText(text, cx - tW / 2, height + tH / 3, textPaint);
+        if (pathNodes.size() != 0) {
+            for (int i = 0; i < pathNodes.size(); i++) {
+                Node node = pathNodes.get(i);
+                int cx = radius * i * 2 + radius;
+                int height = mH - this.radius * 5;
+                nPaint.setColor(0xffddddff);
+                canvas.drawCircle(cx, height, radius, nPaint);
+                String text = String.valueOf(node.key);
+                float tW = textPaint.measureText(text);
+                canvas.drawText(text, cx - tW / 2, height + tH / 3, textPaint);
+            }
+            pathNodes.clear();
         }
         if (show != null) {
             TextPaint textPaint = new TextPaint();
@@ -123,11 +124,11 @@ public class RedBlackTreeView extends View {
         String text = String.valueOf(node.key);
         float tW = textPaint.measureText(text);
         canvas.drawText(text, node.x - tW / 2, node.y + tH / 3, textPaint);
-        Log.e(TAG, "绘制节点: " + node.key);
-        drawNode(canvas, node.left);
-        drawNode(canvas, node.right);
-        //绘制Nil节点
-//        drawNuiNode(canvas, node);
+        if (node.left == nil | node.right == nil) {
+            drawNuiNode(canvas, node); //绘制叶子节点
+        }
+        drawNode(canvas, node.left);   //绘制坐支及子节点
+        drawNode(canvas, node.right);  //绘制右支及子节点
     }
 
     /**
@@ -135,9 +136,6 @@ public class RedBlackTreeView extends View {
      */
     private void drawNuiNode(Canvas canvas, Node node) {
         if (node == null) {
-            return;
-        }
-        if (node.left != null & node.right != null) {
             return;
         }
         nPaint.setColor(0xff555555);
@@ -152,7 +150,7 @@ public class RedBlackTreeView extends View {
         int nY = (int) (node.y + node.interval * 1.5f);
         Rect rect = new Rect();
         int l = radius / 3 * 2;
-        if (node.left == null) {
+        if (node.left == nil) {
             int lX = node.x - difX;
             rect.left = lX - l;
             rect.right = lX + l;
@@ -162,7 +160,7 @@ public class RedBlackTreeView extends View {
             canvas.drawRect(rect, nPaint);
             canvas.drawText(text, lX - tW / 2, nY + tH / 3, textPaint);
         }
-        if (node.right == null) {
+        if (node.right == nil) {
             int rX = node.x + difX;
             rect.left = rX - l;
             rect.right = rX + l;
@@ -371,6 +369,9 @@ public class RedBlackTreeView extends View {
         return x;
     }
 
+    /**
+     * 查找结点
+     */
     public void find(int number) {
         pathNodes.clear();
         search(number, true);
@@ -392,9 +393,6 @@ public class RedBlackTreeView extends View {
         }
     }
 
-    /**
-     * 查找结点的key值为key的结点
-     */
     private Node search(int key, boolean withPath) {
         Node compile = treeRoot;
         if (withPath) {
@@ -413,13 +411,16 @@ public class RedBlackTreeView extends View {
         return compile;
     }
 
+    /**
+     * 删除节点
+     */
     public void deleteNode(int number) {
         pathNodes.clear();
         delete(number, true);
         int size = pathNodes.size();
         if (size != 0) {
             mPath = new Path();
-            pathPaint.setColor(0x99ffdddd);
+            pathPaint.setColor(0xccffdddd);
             for (int i = 0; i < size; i++) {
                 Node node = pathNodes.get(i);
                 if (i == 0) {
@@ -434,40 +435,37 @@ public class RedBlackTreeView extends View {
         }
     }
 
-    /**
-     * 删除结点
-     */
-    public void delete(int key, boolean withPath) {
-        Node z = search(key, withPath);
-        if (z == nil) {
+    private void delete(int number, boolean withPath) {
+        Node node = search(number, withPath);
+        if (node == nil) {
             return;
         }
-        Node y = z;
+        Node y = node;
         Node x;
-        boolean yOriginalColor = y.color;
-        if (z.left == nil) {
-            x = z.right;
-            transplant(z, z.right);
-        } else if (z.right == nil) {
-            x = z.left;
-            transplant(z, z.left);
+        boolean oColor = y.color;        //待删除节点颜色
+        if (node.left == nil) {
+            x = node.right;
+            transplant(node, node.right);
+        } else if (node.right == nil) {
+            x = node.left;
+            transplant(node, node.left);
         } else {
-            y = minimum(z.right);
-            yOriginalColor = y.color;
+            y = minimum(node.right);
+            oColor = y.color;
             x = y.right;
-            if (y.parent == z) {
+            if (y.parent == node) {
                 x.parent = y;
             } else {
                 transplant(y, y.right);
-                y.right = z.right;
+                y.right = node.right;
                 y.right.parent = y;
             }
-            transplant(z, y);
-            y.left = z.left;
+            transplant(node, y);
+            y.left = node.left;
             y.left.parent = y;
-            y.color = z.color;
+            y.color = node.color;
         }
-        if (yOriginalColor == true) {
+        if (oColor == true) {    //删除红节点不需要平衡调整,删除黑节点需要平衡调整
             deleteBalance(x);
         }
     }
@@ -475,59 +473,59 @@ public class RedBlackTreeView extends View {
     /**
      * 删除修复
      */
-    private void deleteBalance(Node x) {
-        while (x != treeRoot && x.color == true) {
-            if (x == x.parent.left) {
-                Node w = x.parent.right;
+    private void deleteBalance(Node node) {
+        while (node != treeRoot && node.color == true) {
+            if (node == node.parent.left) {
+                Node w = node.parent.right;
                 if (w.color == false) {
                     w.color = true;
-                    x.parent.color = false;
-                    leftRotate(x.parent);
-                    w = x.parent.right;
+                    node.parent.color = false;
+                    leftRotate(node.parent);
+                    w = node.parent.right;
                 }
                 if (w.left.color == true && w.right.color == true) {
                     w.color = false;
-                    x = x.parent;
+                    node = node.parent;
                 } else {
                     if (w.right.color == true) {
                         w.left.color = true;
                         w.color = false;
                         rightRotate(w);
-                        w = x.parent.right;
+                        w = node.parent.right;
                     }
-                    w.color = x.parent.color;
-                    x.parent.color = true;
+                    w.color = node.parent.color;
+                    node.parent.color = true;
                     w.right.color = true;
-                    leftRotate(x.parent);
-                    x = treeRoot;
+                    leftRotate(node.parent);
+                    node = treeRoot;
                 }
             } else {
-                Node w = x.parent.left;
+                Node w = node.parent.left;
                 if (w.color == false) {
                     w.color = true;
-                    x.parent.color = false;
-                    leftRotate(x.parent);
-                    w = x.parent.left;
+                    node.parent.color = false;
+                    leftRotate(node.parent);
+                    w = node.parent.left;
                 }
                 if (w.left.color == true && w.right.color == true) {
                     w.color = false;
-                    x = x.parent;
+                    node = node.parent;
                 } else {
                     if (w.left.color == true) {
                         w.right.color = true;
                         w.color = false;
                         leftRotate(w);
-                        w = x.parent.left;
+                        w = node.parent.left;
                     }
-                    w.color = x.parent.color;
-                    x.parent.color = true;
+                    w.color = node.parent.color;
+                    node.parent.color = true;
                     w.left.color = true;
-                    rightRotate(x.parent);
-                    x = treeRoot;
+                    rightRotate(node.parent);
+                    node = treeRoot;
                 }
             }
         }
-        x.color = true;
+        node.color = true;
     }
 
 
@@ -540,7 +538,7 @@ public class RedBlackTreeView extends View {
         int size = pathNodes.size();
         if (size != 0) {
             mPath = new Path();
-            pathPaint.setColor(0x99ffdddd);
+            pathPaint.setColor(0xccffdddd);
             for (int i = 0; i < size; i++) {
                 Node node = pathNodes.get(i);
                 if (i == 0) {
@@ -571,7 +569,7 @@ public class RedBlackTreeView extends View {
         int size = pathNodes.size();
         if (size != 0) {
             mPath = new Path();
-            pathPaint.setColor(0x99ddddff);
+            pathPaint.setColor(0xccddddff);
             for (int i = 0; i < size; i++) {
                 Node node = pathNodes.get(i);
                 if (i == 0) {
@@ -599,11 +597,11 @@ public class RedBlackTreeView extends View {
     public void postOrder() {
         postOrder(treeRoot);
         pathNodes.clear();
-        inOrder(treeRoot);
+        postOrder(treeRoot);
         int size = pathNodes.size();
         if (size != 0) {
             mPath = new Path();
-            pathPaint.setColor(0x99ddffdd);
+            pathPaint.setColor(0xccddffdd);
             for (int i = 0; i < size; i++) {
                 Node node = pathNodes.get(i);
                 if (i == 0) {
@@ -616,6 +614,7 @@ public class RedBlackTreeView extends View {
             invalidate();
         }
     }
+
     //后序遍历先左-再又-再本
     private void postOrder(Node traverse) {
         if (traverse != nil) {

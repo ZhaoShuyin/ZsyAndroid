@@ -1,4 +1,4 @@
-package zsy.myapp.view;
+package zsy.structure.test;
 
 /**
  * 节点类

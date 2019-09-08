@@ -22,14 +22,14 @@
         android:layout_height="wrap_content"
         android:background="#DDD">
 
-        <zsy.myapp.view.FontView
+        <zsy.structure.view.FontView
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:layout_margin="10dp"
             android:background="#FFF"/>
     </LinearLayout>
 
-    <zsy.myapp.view.PathView
+    <zsy.structure.view.PathView
         android:id="@+id/pathview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

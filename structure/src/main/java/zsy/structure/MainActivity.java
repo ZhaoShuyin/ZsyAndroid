@@ -1,13 +1,12 @@
-package zsy.myapp;
+package zsy.structure;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import zsy.myapp.BinaryActivity;
 import zsy.myapp.R;
-import zsy.myapp.view.PathView;
+import zsy.structure.view.PathView;
 
 /**
  * Created by Zsy on 2019/9/5.

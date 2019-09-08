@@ -1,4 +1,4 @@
-package zsy.myapp;
+package zsy.structure;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -6,7 +6,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import zsy.myapp.view.BinaryTreeView;
+import zsy.myapp.R;
+import zsy.structure.view.BinaryTreeView;
 
 public class BinaryActivity extends Activity {
     EditText editText;

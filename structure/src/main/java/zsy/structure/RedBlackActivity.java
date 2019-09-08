@@ -1,4 +1,4 @@
-package zsy.myapp;
+package zsy.structure;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -6,7 +6,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import zsy.myapp.view.RedBlackTreeView;
+import zsy.myapp.R;
+import zsy.structure.view.RedBlackTreeView;
 
 /**
  * Created by Zsy on 2019/9/5.

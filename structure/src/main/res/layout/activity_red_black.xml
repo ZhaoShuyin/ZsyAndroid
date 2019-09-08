@@ -6,7 +6,7 @@
     android:background="#DDD"
     android:orientation="vertical">
 
-    <zsy.myapp.view.RedBlackTreeView
+    <zsy.structure.view.RedBlackTreeView
         android:id="@+id/rb_view"
         android:layout_width="match_parent"
         android:layout_height="360dp"
@@ -56,21 +56,21 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="prev"
-            android:text="查找"/>
+            android:text="先序遍历"/>
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="mid"
-            android:text="左旋"/>
+            android:text="中序遍历"/>
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="sub"
-            android:text="右旋"/>
+            android:text="后序遍历"/>
 
     </LinearLayout>
 

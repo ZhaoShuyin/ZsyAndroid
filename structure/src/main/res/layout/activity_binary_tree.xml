@@ -7,9 +7,9 @@
     android:layout_height="match_parent"
     android:background="#DDD"
     android:orientation="vertical"
-    tools:context="zsy.myapp.BinaryActivity">
+    tools:context="zsy.myapp.zsy.structure.BinaryActivity">
 
-    <zsy.myapp.view.BinaryTreeView
+    <zsy.structure.view.BinaryTreeView
         android:id="@+id/rbt_view"
         android:layout_width="match_parent"
         android:layout_height="390dp"

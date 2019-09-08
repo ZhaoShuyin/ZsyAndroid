@@ -1,4 +1,4 @@
-package zsy.myapp.view;
+package zsy.structure.test;
 
 /**
  * Title zsy.myapp.view
