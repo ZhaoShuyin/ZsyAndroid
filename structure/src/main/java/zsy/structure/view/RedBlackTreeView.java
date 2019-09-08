@@ -274,6 +274,7 @@ public class RedBlackTreeView extends View {
             treeRoot = addNode;
             treeRoot.left = nil;
             treeRoot.right = nil;
+            invalidate();
             return;
         }
         Node upstream = null;

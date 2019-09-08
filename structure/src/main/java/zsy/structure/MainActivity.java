@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import zsy.myapp.R;
 import zsy.structure.view.PathView;
 
 /**
