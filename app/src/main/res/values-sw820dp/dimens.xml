@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-	<dimen name="dp_100">820dp</dimen>
 	<dimen name="dp_10">22.7778dp</dimen>
+	<dimen name="dp_20">45.5556dp</dimen>
+	<dimen name="dp_50">113.8889dp</dimen>
+	<dimen name="dp_100">227.7778dp</dimen>
+	<dimen name="dp_150">341.6667dp</dimen>
+	<dimen name="dp_200">455.5556dp</dimen>
+	<dimen name="dp_250">569.4444dp</dimen>
+	<dimen name="dp_300">683.3333dp</dimen>
+	<string name="dimen_vlue">sw820</string>
 </resources>

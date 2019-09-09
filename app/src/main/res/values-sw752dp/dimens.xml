@@ -2,4 +2,5 @@
 <resources>
 	<dimen name="dp_100">752dp</dimen>
 	<string name="dimenstr">752</string>
+	<string name="dimen_vlue">sw752</string>
 </resources>

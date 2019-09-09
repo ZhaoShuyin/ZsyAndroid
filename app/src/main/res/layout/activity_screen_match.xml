@@ -1,20 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/dpi"/>
 
     <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/dpi"/>
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/dpishow"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFDDDDFF"
+        android:gravity="center"
+        android:text="@string/dimen_vlue"
+        android:textColor="#ff000000"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/tv_show"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:layout_margin="5dp"
+        android:text="显示信息"
         android:textColor="#000"
-        android:text="@string/app_name"/>
+        android:textSize="16sp"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#F00"/>
+
+    <TextView
+        android:id="@+id/tv_width"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:background="#555555"
+        android:gravity="center"
+        android:text="360dp"
+        android:textColor="#FFF"/>
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="3dp"
+        android:background="#FDD"
+        android:gravity="center"
+        android:text="100dp宽"/>
+
+    <TextView
+        android:id="@+id/tv_screen_view1"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="3dp"
+        android:background="#DFD"
+        android:gravity="center"
+        android:text="100dp宽"/>
+
+
+    <TextView
+        android:id="@+id/tv_screen_view2"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="3dp"
+        android:background="#DDF"
+        android:gravity="center"
+        android:text="100dp宽"/>
 </LinearLayout>

@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
+    <dimen name="dp_10">10dp</dimen>
+    <dimen name="dp_20">20dp</dimen>
+    <dimen name="dp_50">50dp</dimen>
     <dimen name="dp_100">100dp</dimen>
+    <dimen name="dp_150">150dp</dimen>
+    <dimen name="dp_200">200dp</dimen>
+    <dimen name="dp_250">250dp</dimen>
+    <dimen name="dp_300">300dp</dimen>
+    <string name="dimen_vlue">defalut</string>
 </resources>
