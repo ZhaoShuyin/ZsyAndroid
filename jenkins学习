@@ -6,10 +6,34 @@ https://www.jianshu.com/p/dc78cbf5080d
 2.下载自动构建插件
 
 3.使用文件C:\Users\zsy\.jenkins\secrets\initialAdminPassword文件进行登录初始化
+  Window工作空间 C:\Users\zsy\.jenkins
+  Linux工作空间 /root/.jenkins
   配置管理账户默认地址http://localhost:8080/jenkins/
 
 4.下载插件
   路径:C:\Users\zsy\.jenkins\plugins
+  默认插件
+    Folders
+ 	OWASP Markup Formatter
+ 	Build Timeout
+ 	Credentials Binding
+ 	Timestamper
+ 	Workspace Cleanup
+ 	Ant
+ 	Gradle
+ 	Pipeline
+ 	GitHub Branch Source
+ 	Pipeline: GitHub Groovy Libraries
+ 	Pipeline: Stage View
+ 	Git
+ 	Subversion
+ 	SSH Slaves
+ 	Matrix Authorization Strategy
+ 	PAM Authentication
+ 	LDAP
+ 	Email
+ 	Extension Mailer
+
 
 5.开始创建一个新任务
   构建一个自由风格的软件项目
@@ -24,8 +48,8 @@ https://www.jianshu.com/p/dc78cbf5080d
                                     GRADLE_HOME:D:\AndroidStudio\gradle\gradle-3.3
 
 7. A.General
-       丢弃旧的构建 : 可选择apk保存时限
-       参数化构建过程 -> 选项参数 :可配置构建参数
+       丢弃旧的构建 : <可选择apk保存时限>
+       参数化构建过程 -> 选项参数 :<可配置构建参数>
 
    B.任务(Project)地址配置
                   Git          Repository URL  :(Git项目地址)
@@ -40,3 +64,14 @@ https://www.jianshu.com/p/dc78cbf5080d
                                 wrapper location :${WORKSPACE}\<项目名称>
                                 tasks            :clean assembleRelease
 8.Build with Parameters 进行构建
+
+
+B.Linux 下配置jenkins
+1.需要Android SDK
+https://www.jianshu.com/p/94c34759de68 linux ANdroid SDK
+android update sdk --no-ui --all --force
+android update sdk --no-ui --filter 1 --all
+android update sdk --no-ui --filter 1 --proxy-host ubuntu.buct.edu.cn --proxy-port 80 -s --all
+2.需要Java JDK
+3.需要Gradle
+

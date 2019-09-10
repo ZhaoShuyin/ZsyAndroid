@@ -18,6 +18,8 @@
         <activity android:name=".LinkedActivity"/>
         <activity android:name=".BinaryActivity"/>
         <activity android:name=".RedBlackActivity"/>
+        <activity android:name=".StackActivity"/>
+        <activity android:name=".QueueActivity"/>
     </application>
 
 </manifest>

@@ -8,6 +8,18 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="queue"
+        android:text="队列"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="stack"
+        android:text="栈"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:onClick="linked"
         android:text="链表"/>
 
@@ -22,7 +34,6 @@
         android:layout_height="wrap_content"
         android:onClick="redblack"
         android:text="红黑树"/>
-
 
 
     <LinearLayout

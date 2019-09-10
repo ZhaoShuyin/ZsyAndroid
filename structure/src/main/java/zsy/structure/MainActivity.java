@@ -26,6 +26,14 @@ public class MainActivity extends Activity {
         });
     }
 
+    public void queue(View view) {
+        startActivity(new Intent(this, QueueActivity.class));
+    }
+
+    public void stack(View view) {
+        startActivity(new Intent(this, StackActivity.class));
+    }
+
     public void linked(View view) {
         startActivity(new Intent(this, LinkedActivity.class));
     }

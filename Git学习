@@ -164,3 +164,14 @@
      $ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
    //
    C:\Users\用户\.gitconfig文件为全局配置信息
+
+
+   Linux 安装
+   tar zxvf git-2.21.0.tar.gz
+   cd git-2.21.0
+   make    //(自带MakeFile文件)
+
+   ./configure --prefix=安装目录 //安装包带configure文件
+   make install PREFIX=/xxx/yyy  //不带configure文件
+
+   make prefix=/usr/local/git install
