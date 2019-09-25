@@ -94,6 +94,7 @@
     $ git push origin :refs/tags/v0.9  //删除远程仓库标签
 
 8.  SSH 配置问题
+   使用Git生成RSA公私钥 ssh-keygen -t rsa -C "zhaoshuyin@163.com"
     $ ssh -T git@github.com
     The authenticity of host 'github.com (52.74.223.119)' can't be established.
     RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
