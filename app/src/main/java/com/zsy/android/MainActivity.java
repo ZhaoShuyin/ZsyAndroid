@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.zsy.android.api.view.ApiActivity;
 import com.zsy.android.base.broadcast.BroadcastActivity;
 import com.zsy.android.base.db.SqliteActivity;
 import com.zsy.android.base.service.ServiceActivity;
@@ -72,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
         toActivity(R.id.animation,AnimationActivity.class);
         //网络
         toActivity(R.id.net,BaseNetnctivity.class);
+        //APitest
+        toActivity(R.id.apitest,ApiActivity.class);
         //ListView
         toActivity(R.id.list_view, SimpleListViewActivity.class);
         //RecyclerView

@@ -19,20 +19,22 @@ import java.util.TimerTask;
 import java.util.concurrent.ScheduledExecutorService;
 
 /**
- *
+ * 波形SerfaceView
  */
 public class testSurfaceView extends Activity {
-    /** Called when the activity is first created. */
+    /**
+     * Called when the activity is first created.
+     */
     Button btnSimpleDraw, btnTimerDraw;
     SurfaceView sfv;
     SurfaceHolder sfh;
     ScheduledExecutorService executorService;
-    private Timer mTimer;//使用ScheduledExecutorService代替Timer吧
+    private Timer mTimer;            //使用ScheduledExecutorService代替Timer吧
     private MyTimerTask mTimerTask;
-    int Y_axis[],//保存正弦波的Y轴上的点
-            centerY,//中心线
-            oldX,oldY,//上一个XY点
-            currentX;//当前绘制到的X轴上的点
+    int Y_axis[],                    //保存正弦波的Y轴上的点
+            centerY,                 //中心线
+            oldX, oldY,              //上一个XY点
+            currentX;                //当前绘制到的X轴上的点
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,20 +63,15 @@ public class testSurfaceView extends Activity {
     }
 
     class ClickEvent implements View.OnClickListener {
-
         @Override
         public void onClick(View v) {
-
             if (v == btnSimpleDraw) {
-                SimpleDraw(Y_axis.length-1);//直接绘制正弦波
-
+                SimpleDraw(Y_axis.length - 1);//直接绘制正弦波
             } else if (v == btnTimerDraw) {
                 oldY = centerY;
                 mTimer.schedule(mTimerTask, 0, 5);//动态绘制正弦波
             }
-
         }
-
     }
 
     class MyTimerTask extends TimerTask {

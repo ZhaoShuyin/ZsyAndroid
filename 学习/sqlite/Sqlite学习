@@ -1,0 +1,9 @@
+
+
+
+//从第一行,查询3条数据
+SELECT * FROM Test LIMIT 3 ;
+//从第三行,查询2条数据
+SELECT * FROM Test LIMIT 3 , 2 ;
+//从第两行,查询3条数据
+SELECT * FROM Test LIMIT 3 OFFSET 2 ;

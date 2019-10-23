@@ -1,0 +1,157 @@
+唯一确定一条记录（一个实体）的字段
+逻辑主键：
+除了唯一标识一条记录外，没有别的意义。一般取名表明加ID或_ID。例如：studentid或student_id（建议）
+业务主键：
+除了具备逻辑主键的特性，还具有一定的业务意义。
+
+创建带主键的表
+一 . create table name(
+	id int primary key,///id为主键不能为null且唯一
+	varchar(100)
+);
+二 . create table name(
+	id int ,
+	varchar(100),
+	primary key(id,name),///id-name组合主键
+);
+三 .
+  creat table name{
+  int id,name carchar(100)
+  };
+  alter table name add primary key(id,name);//(也可使用联合主键)
+四 .
+  creat table name(){
+  id int key auto_increment//自增长主键(auto_increment为MySql独有)
+  ,name VARCHAR(100)
+  }
+
+ A.
+ 域的完整性
+javabean中变量 int id; 和 Integer id;的区别
+Integer 使用包装类 可以为null 否则出现id重复修改数据
+
+B.约束
+ create table T5(
+	ID int primary key auto_increment,
+	name varchar(100) not null unique,
+	gebnder   char(1) not null,//(非空约束限定)
+	phone	  varchar(11) unique //(唯一约束)
+ );
+
+ C .
+  参照完整性(多表)：
+  保证一个表的外键和另一个表的主键对应。
+
+  AAA 创建主表
+  create table customer(
+  id int primary key,
+  name varchar(100) not null,
+  address varchar(100) not null,
+  type varchar(100)
+  );
+  BBB 创建从表
+  create table orders(
+  id int primary key,
+  amount int,
+  price float,
+  code varchar(100),
+  customer_id int,
+  constraint FK_CUSTOMERID foreign key(customer_id) references customer(id)
+  );
+
+  CCC 关联主表和从表(FK_CUSTOMERID库中唯一)
+  constraint FK_CUSTOMERID foreign key(customer_id) references customer(id);
+
+  主表 -------- 从表
+  主表中的主键被从表中的一个字段引用,在从表中,该字段被称为外键
+
+
+ 使用联合主键(多表对多表)
+
+ AAA
+  create table teachers(
+	id int primary key,
+	name varchar(100) not null,
+	salary float(7,2)
+  );
+
+  create table students(
+	id int primary key,
+	classname varchar(100) not null,
+	name varchar(100) not null,
+	gender varchar(10) not null
+  );
+
+  //创建主从表关系表
+  create table teacher_student_ref(
+  teacher_id int,
+  student_id int,
+  primary key(teacher_id,student_id),
+  constraint FK_TEACHERID foreign key(teacher_id) references teachers(id),
+  constraint FK_STUDENTID foreign key(student_id) references students(id)
+  );
+
+  source 路径 (导入数据库文件)
+  //
+  a.交叉连接 cross join 返回两张表的笛卡尔积(两个表集合的积)
+  select * from customer,orders;//隐式连接
+  select * from customer cross join orders;//显式连接连接
+  b.内连接
+  //隐式内连接
+  select * from customer,orders where customer.id = customer_id;
+  select * from customer c,orders where c.id = customer_id;//使用别名的变量值
+  //显式内连接
+  select * from customer c inner join orders on c.id = customer_id;
+  c.外链接
+  //不仅返回符合条件的数据,还会根据左外联或右外联,返回对应表的其他数据
+  左外链接(返回左表的所有数据)
+  select * from customer c left outer join orders on c.id = customer_id;
+  select * from orders left outer join customer c on c.id = customer_id;
+  右外链接(返回右表所有行)
+  select * from customer c right outer join orders on c.id = customer_id;
+
+  子查询
+  先执行子查询,再执行外查询
+  1.select id 客户id from customer where name='马化腾';
+  2.select * from orders where customer_id = (select id from customer where name='马化腾');
+  3.select * from customer where id in (select customer_id from orders where price > 100);
+  4.select name 名字 from customer where id in (select customer_id from orders where price > 100);
+
+  聚合函数(在查询语句中使用函数计算)
+  select count(*) from student;
+  select name,chinese+math+english as total from student;
+  select count(*) from student where chinese+math+english > 250;
+  select sum(math) from student;
+
+  分组查询
+  select product_name, sum(price) from product;
+  select product_name, sum(price) from product group by product_name;
+  //having可以使用聚合函数(where不可用)
+  select product_name from product group by product_name having sum(price) > 100;
+
+  其他函数
+  select addtime('11:15:00','01:01:01');//时间计算函数
+  select current_date();//当前日期
+  select current_time();//当前时间
+  select current_timestamp();//当前日期+时间
+  select date(current_timestamp());//通过时间获取日期部分
+  select now();
+  select year(now());//获取年月日等单独信息
+
+  select charset('张三');//获取编码格式
+		 concat('','')//连接字符串
+         ucase('');	//转大写
+		 lcase('')//转小写
+		 replace('asc','s','b')//替换
+  select strcmp('aaa','bbb');//逐字节比较字符串大小
+
+
+
+  数据库的备份和恢复
+  //导出
+  mysqldump -h localhost -p3306 -uroot -p123 mydb1>i:\mysql\mydb.sql
+  //导入
+  //(先使用数据库)
+  source i:\mysql\mydb.sql
+  //先创建mydb6数据库名
+  mysqldump -h localhost -p3306 -uroot -p123 mydb1<i:\mysql\mydb.sql

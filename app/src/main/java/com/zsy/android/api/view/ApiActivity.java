@@ -36,15 +36,15 @@ import java.io.File;
 
 public class ApiActivity extends Activity {
 
-    private String[] names = {"laozhang", "laoli", "laowang", "xiaoqiang", "xiaomao"};
+    private String[] names = {"laozhang", "laoli", "laowang", "xiaoqiang", "xiaomao","张三","张武"};
     ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auto);
-        String host = getIntent().getData().getHost();
-        Toast.makeText(this, "getIntent().getData().getHost()\n" + host, Toast.LENGTH_SHORT).show();
+//        String host = getIntent().getData().getHost();
+//        Toast.makeText(this, "getIntent().getData().getHost()\n" + host, Toast.LENGTH_SHORT).show();
         AutoCompleteTextView actv = (AutoCompleteTextView) findViewById(R.id.actv_text);
         actv.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, names));
         imageView = findViewById(R.id.iv_api);

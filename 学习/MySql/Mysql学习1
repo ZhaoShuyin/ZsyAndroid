@@ -1,0 +1,135 @@
+#Path to installation directory. All paths are usually resolved relative to this.
+basedir="E:/Program Files/MySQL/MySQL Server 5.5/"
+
+#Path to the database root
+datadir="C:/ProgramData/MySQL/MySQL Server 5.5/Data/"
+
+//删除注册表
+HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\services\eventlog\Application\MySQL
+
+//环境变量
+C:\Users\apache-ant-1.10.1\bin;C:\ProgramData\Oracle\Java\javapath;E:\Android\sdk\platform-tools\;E:\Android\sdk\tools\;%JAVA_HOME%\bin;%NDK%;%CATALINA_HOME%\bin;%ANDROID_BUNDLE%;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;E:\Program Files\MySQL\MySQL Server 5.5\bin
+
+C:\Users\apache-ant-1.10.1\bin;C:\ProgramData\Oracle\Java\javapath;E:\Android\sdk\platform-tools\;E:\Android\sdk\tools\;%JAVA_HOME%\bin;%NDK%;%CATALINA_HOME%\bin;%ANDROID_BUNDLE%;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;E:\MySQL\MySQL Server 5.5\bin
+
+
+MySql 命令 Windom不区分大小写 Linux 严格区分大小写
+
+//
+登录MySql(环境标量已配置)
+W: mysql -uroot -p123
+L: mysql -uroot -p
+
+***//查看所有数据库
+SHOW DATABASES;
+
+***//创建数据库
+create database mydb1;//if not exists mybd1;
+CREATE DATABASE mydb1;//IF NOT EXISTS mybd1
+
+//查看数据库创建细节
+SHOW CREATE DATABASE mydb1;
+
+//创建时使用指定编码
+CREATE DATABASE mydb2 CHARACTE R SET GBK;
+
+//查看gbk字符集下,校验规则
+SHOW COLLATION LIKE 'gbk';(响应Empty set (0.00 sec))
+
+//创建带校验规则的数据库
+CREATE DATABASE mydb3 CHARACTER SET GBK COLLATE gbk_chinese_ci;
+
+***//删除某数据库
+DROP DATABASE mydb3;
+
+***//修改数据库
+ALTER DATABASE mydb1 CHARACTER SET utf8;
+ALTER DATABASE mydb2 CHARACTER SET utf8;
+
+
+=====================================
+BLOB 二进制大对象  CLOB 文本大对象
+//创建表
+CREATE TABLE employee(
+id INT,
+name VARCHAR(100),
+gender VARCHAR(10),
+brithday DATE,
+entry_date DATE,
+job VARCHAR(100),
+salary FLOAT(7,2),
+resume LONGTEXT);
+
+//查看表
+DESC employee;
+//修改表结构(添加一列)
+alter table emp add column image blob;
+
+//在上面员工表的基本上增加一个image列。
+alter table emp add column image blob;()
+//修改job列，使其长度为60。
+alter table emp modify column name varchar(60);
+//删除image列。
+alter table emp drop column birthday;
+//表名修改
+alter table emp rename to user;
+rename table user to emp;
+//修改表的字符集为utf8(修改编码结构)。
+alter table emp character set utf8;
+//列名name修改为username。
+alter table emp change name username varchar(50);
+//
+show create table emp;
+
+================================
+表操作
+//
+//插入数值
+insert into employee value(1,'zhangsan','nan','1999-01-01','1999-01-02','ceo',90000,'hello');
+//查询插入结果
+select * from employee
+
+======================================
+show variables like 'character%';
+
+//单次连接有效
+//设置MySql以某编码接收以默认编码储存,再以设置编码输出;
+修改客户端的字符集：
+  set character_set_client=gbk;
+//设置结果集用gbk编码：
+  set character_set_results=gbk;
+
+=========================
+//修改
+update employee set job='cbc',brithday='1988-01-08' where name='lisi';
+
+//删除重建
+delete from emp;
+使用truncate删除表中记录。
+
+
+
+=============================================================
+//
+select english from student;
+//剔除重复数据
+select distinct english from student;
+
+
+==============================================================
+
+
+//修改MySql编码
+//首先查看
+show variables like "%char%";
+
+在mysql安装目录下找到my.ini文件
+在其中添加
+
+//暂时无法使用
+//[client]
+//default-character-set=utf8
+
+//仅使用此设置即可
+在[mysqld]下添加
+character-set-server=utf8

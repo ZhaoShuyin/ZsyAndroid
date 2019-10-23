@@ -1,0 +1,18 @@
+
+//创建测试表
+create table tbl (
+    id      int primary key,
+    col     int
+     );
+
+//表中插入数据
+insert into tbl values
+   (1,11),
+   (2,22),
+   (3,33),
+   (4,44),
+   (5,55),
+   (6,66);
+
+//设置为查询行数设置为新的一列 (列名rowid)
+select * , (select count(*) from tbl where id<=a.id) as rowid from tbl a order by id;

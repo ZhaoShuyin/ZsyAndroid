@@ -40,8 +40,8 @@ public class SimpleListViewActivity extends Activity {
     /**
      * ListView多层嵌套
      */
-    public void nested(View view){
-        startActivity(new Intent(this,ListViewNestedActivity.class));
+    public void nested(View view) {
+        startActivity(new Intent(this, ListViewNestedActivity.class));
     }
 
 

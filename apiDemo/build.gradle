@@ -3,8 +3,9 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 19
     //对于Gradle3.3最低版本 25.0.0
+    //对于Gradle4.1最低版本 26.0.2
     //
-    buildToolsVersion '25.0.0'
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
         applicationId "com.example.android.apis"

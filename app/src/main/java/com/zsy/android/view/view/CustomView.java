@@ -1,6 +1,8 @@
 package com.zsy.android.view.view;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -36,6 +38,14 @@ public class CustomView extends View {
         float x = event.getX();
         float y = event.getY();
         Log.i(TAG, "onTouchEvent: x=="+x+" y=="+y);
+        Rect dirty = new Rect();//局部刷新
+        invalidate(dirty);
         return true;
+    }
+
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
     }
 }

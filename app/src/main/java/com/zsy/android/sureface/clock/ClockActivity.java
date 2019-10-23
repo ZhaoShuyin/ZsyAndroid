@@ -41,11 +41,10 @@ public class ClockActivity extends Activity {
 		 * SurfaceHolder.Callback的三个方法
 		 */
 		@Override
-		public void surfaceChanged(SurfaceHolder holder, int format, int width,
-								   int height) {
+		public void surfaceChanged(SurfaceHolder holder, int format, int width,int height) {
 			System.out.println("22surfaceChanged方法调用了");
-
 		}
+
 		@Override
 		public void surfaceCreated(SurfaceHolder holder) {
 			System.out.println("22surfaceCreated方法调用了");
@@ -88,7 +87,6 @@ public class ClockActivity extends Activity {
 						Thread.sleep(1000);// 睡眠时间为1秒
 					}
 				} catch (Exception e) {
-					// TODO: handle exception
 					e.printStackTrace();
 				} finally {
 					if (c != null) {
