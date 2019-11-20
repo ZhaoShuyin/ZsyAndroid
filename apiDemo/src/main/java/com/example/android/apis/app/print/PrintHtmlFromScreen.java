@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.apis.app;
+package com.example.android.apis.app.print;
 
 import android.app.Activity;
 import android.content.Context;
@@ -28,16 +28,7 @@ import android.webkit.WebViewClient;
 import com.example.android.apis.R;
 
 /**
- * This class demonstrates how to implement HTML content printing
- * from a {@link WebView} which is shown on the screen.
- * <p>
- * This activity shows a simple HTML content in a {@link WebView}
- * and allows the user to print that content via an action in the
- * action bar. The shown {@link WebView} is doing the printing.
- * </p>
- *
- * @see PrintManager
- * @see WebView
+ *  调用系统打印机服务屏幕内 Html 布局
  */
 public class PrintHtmlFromScreen extends Activity {
 

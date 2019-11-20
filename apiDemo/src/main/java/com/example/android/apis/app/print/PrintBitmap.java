@@ -1,4 +1,4 @@
-package com.example.android.apis.app;
+package com.example.android.apis.app.print;
 /*
  * Copyright (C) 2013 The Android Open Source Project
  *
@@ -29,15 +29,7 @@ import android.widget.ImageView;
 import com.example.android.apis.R;
 
 /**
- * This class demonstrates how to implement bitmap printing.
- * <p>
- * This activity shows an image and offers a print option in the overflow
- * menu. When the user chooses to print a helper class from the support
- * library is used to print the image.
- * </p>
- *
- * @see PrintManager
- * @see WebView
+ * 调用系统打印机服务打印(Bitmap)图片
  */
 public class PrintBitmap extends Activity {
 
@@ -78,5 +70,6 @@ public class PrintBitmap extends Activity {
 
         // Print the bitmap.
         printHelper.printBitmap("Print Bitmap", bitmap);
+
     }
 }

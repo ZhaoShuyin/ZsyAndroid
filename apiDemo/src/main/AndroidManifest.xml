@@ -996,7 +996,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".app.PrintBitmap"
+        <!--打印机服务(图片)-->
+        <activity android:name=".app.print.PrintBitmap"
                 android:label="@string/print_bitmap"
                 android:enabled="@bool/atLeastKitKat">
             <intent-filter>
@@ -1004,8 +1005,8 @@
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".app.PrintHtmlFromScreen"
+        <!--打印机服务(布局)-->
+        <activity android:name=".app.print.PrintHtmlFromScreen"
                 android:label="@string/print_html_from_screen"
                 android:enabled="@bool/atLeastKitKat">
             <intent-filter>
@@ -1013,8 +1014,8 @@
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".app.PrintHtmlOffScreen"
+        <!--打印机服务(网页)-->
+        <activity android:name=".app.print.PrintHtmlOffScreen"
                 android:label="@string/print_html_off_screen"
                 android:enabled="@bool/atLeastKitKat">
             <intent-filter>
@@ -1022,8 +1023,8 @@
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".app.PrintCustomContent"
+        <!--打印机服务(网页(包含试图外))-->
+        <activity android:name=".app.print.PrintCustomContent"
                 android:label="@string/print_custom_content"
                 android:enabled="@bool/atLeastKitKat">
             <intent-filter>
@@ -1031,6 +1032,7 @@
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
+
 
         <!-- Application Updating Samples -->
 

@@ -36,6 +36,7 @@ ADB命令
        adb shell ps | grep adbd (Linux)
        adb shell ps | findstr adbd (Window)
 
+
 ADB SHELL
     1.adb shell 则是调用的 Android 系统中的命令
        android.intent.category.LAUNCHER<查看设备中所有应用包名>
@@ -61,6 +62,10 @@ ADB SHELL
     adb pm set-install-location 0       #由App自行决定软件能否安装在SD卡上
     adb pm set-install-location 1       #强制全部App安装在ROM内
     adb pm set-install-location 2       #强制全部App安装在SD卡
+
+    adb shell pm list package //应用列表
+    adb shell pm path <包名>   //显示安装包位置
+    adb pull <文件路径> <导出路径>
 
 AM
     //

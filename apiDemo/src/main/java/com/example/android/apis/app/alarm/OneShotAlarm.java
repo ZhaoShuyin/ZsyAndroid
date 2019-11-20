@@ -31,12 +31,12 @@ import com.example.android.apis.R;
  * <p>
  * When the alarm goes off, we show a <i>Toast</i>, a quick message.
  */
-public class OneShotAlarm extends BroadcastReceiver
-{
+public class OneShotAlarm extends BroadcastReceiver {
+
     @Override
-    public void onReceive(Context context, Intent intent)
-    {
-        Toast.makeText(context, R.string.one_shot_received, Toast.LENGTH_SHORT).show();
+    public void onReceive(Context context, Intent intent) {
+        Toast.makeText(context, "一声警报响了", Toast.LENGTH_SHORT).show();
     }
+
 }
 

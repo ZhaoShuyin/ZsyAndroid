@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.apis.app;
+package com.example.android.apis.app.print;
 
 import android.app.Activity;
 import android.content.Context;
@@ -33,16 +33,7 @@ import android.webkit.WebViewClient;
 import com.example.android.apis.R;
 
 /**
- * This class demonstrates how to implement HTML content printing
- * from a {@link WebView} which is not shown on the screen.
- * <p>
- * This activity shows a text prompt and when the user chooses the
- * print option from the overflow menu an HTML page with content that
- * is not on the screen is printed via an off-screen {@link WebView}.
- * </p>
- *
- * @see PrintManager
- * @see WebView
+ * 调用系统打印机服务屏幕外 Html 布局
  */
 public class PrintHtmlOffScreen extends Activity {
 
@@ -79,7 +70,7 @@ public class PrintHtmlOffScreen extends Activity {
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
-              doPrint();
+                doPrint();
             }
         });
 
@@ -104,15 +95,15 @@ public class PrintHtmlOffScreen extends Activity {
 
             @Override
             public void onLayout(PrintAttributes oldAttributes, PrintAttributes newAttributes,
-                    CancellationSignal cancellationSignal, LayoutResultCallback callback,
-                    Bundle extras) {
+                                 CancellationSignal cancellationSignal, LayoutResultCallback callback,
+                                 Bundle extras) {
                 mWrappedInstance.onLayout(oldAttributes, newAttributes, cancellationSignal,
                         callback, extras);
             }
 
             @Override
             public void onWrite(PageRange[] pages, ParcelFileDescriptor destination,
-                    CancellationSignal cancellationSignal, WriteResultCallback callback) {
+                                CancellationSignal cancellationSignal, WriteResultCallback callback) {
                 mWrappedInstance.onWrite(pages, destination, cancellationSignal, callback);
             }
 
