@@ -15,7 +15,7 @@
 -->
 
 <!-- Demonstrates launching various intents.
-     See corresponding Java code com.example.android.apis.app.Intents.java. -->
+     See corresponding Java code com.example.android.apis.app.In tents.java. -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:padding="4dip"

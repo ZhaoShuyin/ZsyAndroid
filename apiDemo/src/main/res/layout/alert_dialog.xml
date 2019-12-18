@@ -15,7 +15,7 @@
 -->
 
 <!-- Demonstrates different uses of the android.app.AlertDialog.
-     See corresponding Java code com.example.android.apis.app.AlertDialogSamples.java. -->
+     See corresponding Java code com.example.android.apis.app.dialog.AlertDialogSamples.java. -->
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/screen"
     android:layout_width="match_parent" android:layout_height="match_parent"

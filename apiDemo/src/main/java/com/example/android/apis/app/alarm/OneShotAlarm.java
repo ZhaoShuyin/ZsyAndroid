@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.apis.app;
+package com.example.android.apis.app.alarm;
 
 import android.content.Context;
 import android.content.Intent;

@@ -68,8 +68,7 @@ public class PrintBitmap extends Activity {
         // Get the bitmap for the ImageView's drawable.
         Bitmap bitmap = ((BitmapDrawable) mImageView.getDrawable()).getBitmap();
 
-        // Print the bitmap.
-        printHelper.printBitmap("Print Bitmap", bitmap);
+        printHelper.printBitmap("转pdf文件名称", bitmap);
 
     }
 }

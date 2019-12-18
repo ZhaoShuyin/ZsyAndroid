@@ -79,6 +79,6 @@ public class PrintHtmlFromScreen extends Activity {
         PrintManager printManager = (PrintManager) getSystemService(
                 Context.PRINT_SERVICE);
         // Pass in the ViewView's document adapter.
-        printManager.print("MotoGP stats", mWebView.createPrintDocumentAdapter(), null);
+        printManager.print("网页当前屏幕", mWebView.createPrintDocumentAdapter(), null);
     }
 }

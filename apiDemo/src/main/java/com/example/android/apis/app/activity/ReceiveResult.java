@@ -14,12 +14,11 @@
  * limitations under the License.
  */
 
-package com.example.android.apis.app;
+package com.example.android.apis.app.activity;
 
 // Need the following import to get access to the app resources, since this
 // class is in a sub-package.
 import com.example.android.apis.R;
-import com.example.android.apis.app.activity.SendResult;
 
 import android.app.Activity;
 import android.content.Intent;

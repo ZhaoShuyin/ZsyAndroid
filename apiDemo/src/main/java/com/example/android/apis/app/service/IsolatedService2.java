@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.apis.app;
+package com.example.android.apis.app.service;
 
 /**
  * Stub to be able to have another instance of IsolatedService running.

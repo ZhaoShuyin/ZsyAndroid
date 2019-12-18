@@ -181,7 +181,8 @@ public class AnimationActivity extends Activity {
 
     // 属性动画 平移
     public void translateObject(View view) {
-        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(textView, "translationX", 0.0f, 350.0f, 0.0f);
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(textView, "translationX",
+                0.0f, 350.0f, 0.0f);
         objectAnimator.setDuration(2000);
         //Animation.INFINITE
         objectAnimator.setRepeatCount(Animation.RESTART);

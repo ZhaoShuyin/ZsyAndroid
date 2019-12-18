@@ -81,14 +81,17 @@ import java.util.List;
 public class PrintCustomContent extends ListActivity {
 
     private static final int MILS_IN_INCH = 1000;
+    private LayoutAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setListAdapter(new MotoGpStatAdapter(loadMotoGpStats(),
-                getLayoutInflater()));
+        adapter = new LayoutAdapter(loadMotoGpStats(),
+                getLayoutInflater());
+        setListAdapter(adapter);
     }
 
+    //菜单目录
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -109,21 +112,26 @@ public class PrintCustomContent extends ListActivity {
         PrintManager printManager = (PrintManager) getSystemService(
                 Context.PRINT_SERVICE);
 
-        printManager.print("MotoGP stats",
-                new MyAdapter() , null);
+        printManager.print("layoutPrint",
+                new MyAdapter(), null);
     }
 
     /**
      * 打印Adapter
+     * 请注意，我们正在使用打印的pdfdocument类来创建生成画布的PDF，
+     * 其大小以点(1/72”)而不是屏幕像素为单位。因此，与屏幕相比，这个画布非常小。
+     * 推荐的方法是把内容按照想要的大小排版，
+     * 在这种情况下，尽可能大的打印机，并设置一个翻译缩小到PDF画布。
+     * 注意，PDF是矢量格式,在转换过程中不会丢失数据。
      */
     class MyAdapter extends PrintDocumentAdapter {
 
+        private Context mPrintContext;           //上下文
         private int mRenderPageWidth;            //文档,文件宽度
         private int mRenderPageHeight;           //文档,文件高度
 
         private PrintAttributes mPrintAttributes;//打印属性
-        private PrintDocumentInfo mDocumentInfo; //文档信息
-        private Context mPrintContext;           //上下文
+        private PrintDocumentInfo mDocumentInfo; //布局文档
 
         /**
          *
@@ -210,7 +218,7 @@ public class PrintCustomContent extends ListActivity {
             // that on the main thread.
 
             // Store the data as we will layout off the main thread.
-            final List<MotoGpStatItem> items = ((MotoGpStatAdapter) getListAdapter()).cloneItems();
+            final List<Item> items = ((LayoutAdapter) getListAdapter()).cloneItems();
 
             new AsyncTask<Void, Void, PrintDocumentInfo>() {
                 @Override
@@ -231,7 +239,7 @@ public class PrintCustomContent extends ListActivity {
                     try {
                         // Create an adapter with the stats and an inflater
                         // to load resources for the printer density.
-                        MotoGpStatAdapter adapter = new MotoGpStatAdapter(items,
+                        LayoutAdapter adapter = new LayoutAdapter(items,
                                 (LayoutInflater) mPrintContext.getSystemService(
                                         Context.LAYOUT_INFLATER_SERVICE));
 
@@ -322,18 +330,20 @@ public class PrintCustomContent extends ListActivity {
             }
 
             // 存储数据，因为我们将主线程布局
-            final List<MotoGpStatItem> items = ((MotoGpStatAdapter)
+            final List<Item> items = ((LayoutAdapter)
                     getListAdapter()).cloneItems();
 
+            //使用异步任务处理
             new AsyncTask<Void, Void, Void>() {
+                //
                 private final SparseIntArray mWrittenPages = new SparseIntArray();
-
+                //
                 private final PrintedPdfDocument mPdfDocument = new PrintedPdfDocument(
                         PrintCustomContent.this, mPrintAttributes);
 
+                // 设置取消回调监听
                 @Override
                 protected void onPreExecute() {
-                    // 取消回调监听
                     cancellationSignal.setOnCancelListener(new OnCancelListener() {
                         @Override
                         public void onCancel() {
@@ -342,14 +352,14 @@ public class PrintCustomContent extends ListActivity {
                     });
                 }
 
+                //子线程执行
                 @Override
                 protected Void doInBackground(Void... params) {
                     // Go over all the pages and write only the requested ones.
                     // Create an adapter with the stats and an inflater
                     // to load resources for the printer density.
-                    MotoGpStatAdapter adapter =
-                            new MotoGpStatAdapter(items,
-                                    (LayoutInflater) mPrintContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE));
+                    LayoutAdapter adapter = new LayoutAdapter(
+                            items, (LayoutInflater) mPrintContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE));
 
                     int currentPage = -1;
                     int pageContentHeight = 0;
@@ -429,8 +439,7 @@ public class PrintCustomContent extends ListActivity {
                     try {
                         FileOutputStream outputStream = new FileOutputStream(destination.getFileDescriptor());
                         mPdfDocument.writeTo(outputStream);
-                        // Compute which page ranges were written based on
-                        // the bookkeeping we maintained.
+                        //计算每页宽高
                         PageRange[] pageRanges = computeWrittenPageRanges(mWrittenPages);
                         callback.onWriteFinished(pageRanges);
                     } catch (IOException ioe) {
@@ -465,7 +474,7 @@ public class PrintCustomContent extends ListActivity {
         }
 
         /**
-         *
+         * 估算 布局 页面,页数
          */
         private PageRange[] computeWrittenPageRanges(SparseIntArray writtenPages) {
             List<PageRange> pageRanges = new ArrayList<PageRange>();
@@ -483,7 +492,8 @@ public class PrintCustomContent extends ListActivity {
                     end = writtenPages.valueAt(i);
                     i++;
                 }
-                @SuppressLint("Range") PageRange pageRange = new PageRange(start, end);
+                @SuppressLint("Range")
+                PageRange pageRange = new PageRange(start, end);
                 pageRanges.add(pageRange);
                 start = end = -1;
             }
@@ -511,14 +521,14 @@ public class PrintCustomContent extends ListActivity {
     /**
      * 获取制造数据
      */
-    private List<MotoGpStatItem> loadMotoGpStats() {
+    private List<Item> loadMotoGpStats() {
         String[] years = getResources().getStringArray(R.array.motogp_years);
         String[] champions = getResources().getStringArray(R.array.motogp_champions);
         String[] constructors = getResources().getStringArray(R.array.motogp_constructors);
-        List<MotoGpStatItem> items = new ArrayList<MotoGpStatItem>();
+        List<Item> items = new ArrayList<Item>();
         final int itemCount = years.length;
         for (int i = 0; i < itemCount; i++) {
-            MotoGpStatItem item = new MotoGpStatItem();
+            Item item = new Item();
             item.year = years[i];
             item.champion = champions[i];
             item.constructor = constructors[i];
@@ -530,7 +540,7 @@ public class PrintCustomContent extends ListActivity {
     /**
      * 数据单元
      */
-    private static final class MotoGpStatItem {
+    private static final class Item {
         String year;
         String champion;
         String constructor;
@@ -539,17 +549,17 @@ public class PrintCustomContent extends ListActivity {
     /**
      * 原生列表布局layout
      */
-    private class MotoGpStatAdapter extends BaseAdapter {
-        private final List<MotoGpStatItem> mItems;
+    private class LayoutAdapter extends BaseAdapter {
+        private final List<Item> mItems;
         private final LayoutInflater mInflater;
 
-        public MotoGpStatAdapter(List<MotoGpStatItem> items, LayoutInflater inflater) {
+        public LayoutAdapter(List<Item> items, LayoutInflater inflater) {
             mItems = items;
             mInflater = inflater;
         }
 
-        public List<MotoGpStatItem> cloneItems() {
-            return new ArrayList<MotoGpStatItem>(mItems);
+        public List<Item> cloneItems() {
+            return new ArrayList<Item>(mItems);
         }
 
         @Override
@@ -573,7 +583,7 @@ public class PrintCustomContent extends ListActivity {
                 convertView = mInflater.inflate(R.layout.motogp_stat_item, parent, false);
             }
 
-            MotoGpStatItem item = (MotoGpStatItem) getItem(position);
+            Item item = (Item) getItem(position);
 
             TextView yearView = (TextView) convertView.findViewById(R.id.year);
             yearView.setText(item.year);

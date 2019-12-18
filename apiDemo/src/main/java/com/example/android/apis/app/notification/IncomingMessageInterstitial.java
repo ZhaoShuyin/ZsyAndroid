@@ -14,12 +14,11 @@
  * limitations under the License.
  */
 
-package com.example.android.apis.app;
+package com.example.android.apis.app.notification;
 
 import com.example.android.apis.R;
 
 import android.app.Activity;
-import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.apis.app;
+package com.example.android.apis.app.activity;
 
 // Need the following import to get access to the app resources, since this
 // class is in a sub-package.
@@ -28,6 +28,7 @@ import android.os.Bundle;
  * 
  * <p>This demonstrates the how to write an activity that is translucent,
  * allowing windows underneath to show through.</p>
+ * 透明Activity
  */
 public class TranslucentActivity extends Activity {
     /**

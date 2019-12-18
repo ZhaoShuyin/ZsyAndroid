@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.apis.app;
+package com.example.android.apis.app.service;
 
 import android.app.Activity;
 import android.app.Service;
@@ -36,6 +36,8 @@ import android.widget.TextView;
 // Need the following import to get access to the app resources, since this
 // class is in a sub-package.
 import com.example.android.apis.R;
+import com.example.android.apis.app.IRemoteService;
+import com.example.android.apis.app.IRemoteServiceCallback;
 
 /**
  * This is an example if implementing a Service that uses android:isolatedProcess.

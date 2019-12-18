@@ -118,6 +118,6 @@ public class PrintHtmlOffScreen extends Activity {
         };
 
         // Pass in the ViewView's document adapter.
-        printManager.print("MotoGP stats", adapter, null);
+        printManager.print("整个网页", adapter, null);
     }
 }

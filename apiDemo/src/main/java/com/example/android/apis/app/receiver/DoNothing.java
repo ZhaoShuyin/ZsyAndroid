@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.apis.app;
+package com.example.android.apis.app.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

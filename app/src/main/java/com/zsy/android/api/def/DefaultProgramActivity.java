@@ -102,4 +102,15 @@ public class DefaultProgramActivity extends Activity {
         return data;
     }
 
+    /**
+     * 调用系统分享文件
+     */
+    private void share() {
+                /*Uri uri = Uri.fromFile(reportFile);
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("application/pdf");
+                intent.putExtra(Intent.EXTRA_STREAM, uri);
+                startActivity(Intent.createChooser(intent, "titlee"));*/
+    }
+
 }

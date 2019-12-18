@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.apis.app;
+package com.example.android.apis.app.dialog;
 
 import android.app.Activity;
 import android.app.AlertDialog;

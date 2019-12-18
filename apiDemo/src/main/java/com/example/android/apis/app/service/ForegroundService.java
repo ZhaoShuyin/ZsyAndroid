@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.apis.app;
+package com.example.android.apis.app.service;
 
 import android.app.Activity;
 import android.app.Notification;
@@ -43,6 +43,7 @@ import com.example.android.apis.R;
  * to the original APIs.  Yes: you can take this exact code, compile it
  * against the Android 2.0 SDK, and it will against everything down to
  * Android 1.0.
+ * 前台服务
  */
 public class ForegroundService extends Service {
     static final String ACTION_FOREGROUND = "com.example.android.apis.FOREGROUND";

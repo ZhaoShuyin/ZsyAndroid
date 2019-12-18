@@ -69,14 +69,14 @@
 
         <!-- Activity Samples -->
 
-        <activity android:name=".app.HelloWorld" android:label="@string/activity_hello_world">
+        <activity android:name=".app.activity.HelloWorld" android:label="@string/activity_hello_world">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".app.DialogActivity"
+        <activity android:name=".app.dialog.DialogActivity"
                 android:label="@string/activity_dialog"
                 android:theme="@android:style/Theme.Holo.Dialog">
             <intent-filter>
@@ -121,7 +121,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".app.TranslucentActivity"
+        <activity android:name=".app.activity.TranslucentActivity"
                 android:label="@string/activity_translucent"
                 android:theme="@style/Theme.Translucent">
             <intent-filter>
@@ -173,7 +173,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".app.FinishAffinity"
+        <activity android:name=".app.activity.FinishAffinity"
                 android:label="@string/activity_finish_affinity"
                 android:taskAffinity=":finishing"
                 android:enabled="@bool/atLeastJellyBean">
@@ -191,14 +191,14 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".app.ReceiveResult" android:label="@string/activity_receive_result">
+        <activity android:name=".app.activity.ReceiveResult" android:label="@string/activity_receive_result">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".app.SendResult"
+        <activity android:name=".app.activity.SendResult"
                 android:theme="@style/ThemeDialogWhenLarge">
         </activity>
 
@@ -253,9 +253,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".app.ReorderTwo" />
-        <activity android:name=".app.ReorderThree" />
-        <activity android:name=".app.ReorderFour" />
+        <activity android:name=".app.activity.ReorderTwo" />
+        <activity android:name=".app.activity.ReorderThree" />
+        <activity android:name=".app.activity.ReorderFour" />
 
         <activity android:name=".app.SetWallpaperActivity"
                   android:label="@string/activity_setwallpaper">
@@ -265,7 +265,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".app.ScreenOrientation"
+        <activity android:name=".app.activity.ScreenOrientation"
                   android:label="@string/activity_screen_orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -499,14 +499,14 @@
 
         <!-- Intent Samples -->
 
-        <activity android:name=".app.Intents" android:label="@string/activity_intents">
+        <activity android:name=".app.activity.Intents" android:label="@string/activity_intents">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".app.IntentActivityFlags"
+        <activity android:name=".app.activity.IntentActivityFlags"
                 android:label="@string/activity_intent_activity_flags">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -596,9 +596,9 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".app.ForegroundService" />
+        <service android:name=".app.service.ForegroundService" />
 
-        <activity android:name=".app.ForegroundService$Controller"
+        <activity android:name=".app.service.ForegroundService$Controller"
                 android:label="@string/activity_foreground_service_controller"
                 android:launchMode="singleTop">
             <intent-filter>
@@ -607,7 +607,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".app.IsolatedService$Controller"
+        <activity android:name=".app.service.IsolatedService$Controller"
                 android:label="@string/activity_isolated_service_controller"
                 android:launchMode="singleTop"
                 android:enabled="@bool/atLeastJellyBean">
@@ -617,27 +617,27 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".app.IsolatedService" android:isolatedProcess="true"
+        <service android:name=".app.service.IsolatedService" android:isolatedProcess="true"
                 android:enabled="@bool/atLeastJellyBean" />
-        <service android:name=".app.IsolatedService2" android:isolatedProcess="true"
+        <service android:name=".app.service.IsolatedService2" android:isolatedProcess="true"
                 android:enabled="@bool/atLeastJellyBean" />
 
         <!-- Alarm Samples -->
 
-        <receiver android:name=".app.OneShotAlarm" android:process=":remote" />
+        <receiver android:name=".app.alarm.OneShotAlarm" android:process=":remote" />
 
         <receiver android:name=".app.RepeatingAlarm" android:process=":remote" />
 
-        <activity android:name=".app.AlarmController" android:label="@string/activity_alarm_controller">
+        <activity android:name=".app.alarm.AlarmController" android:label="@string/activity_alarm_controller">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
 
-        <service android:name=".app.AlarmService_Service" android:process=":remote" />
+        <service android:name=".app.alarm.AlarmService_Service" android:process=":remote" />
 
-        <activity android:name=".app.AlarmService" android:label="@string/activity_alarm_service">
+        <activity android:name=".app.alarm.AlarmService" android:label="@string/activity_alarm_service">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -646,7 +646,7 @@
 
         <!-- Stub for memory testing. -->
 
-        <receiver android:name=".app.DoNothing"
+        <receiver android:name=".app.receiver.DoNothing"
                 android:process=":empty" android:exported="true" />
 
         <!-- ============================ -->
@@ -718,14 +718,14 @@
 
         <!-- Notifications samples -->
 
-        <activity android:name=".app.NotifyWithText" android:label="App/Notification/NotifyWithText">
+        <activity android:name=".app.notification.NotifyWithText" android:label="App/Notification/NotifyWithText">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".app.IncomingMessage"
+        <activity android:name=".app.notification.IncomingMessage"
                 android:label="App/Notification/IncomingMessage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -733,12 +733,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".app.IncomingMessageView"
+        <activity android:name=".app.notification.IncomingMessageView"
                 android:label="App/Notification/IncomingMessageView">
         </activity>
 
 
-        <activity android:name=".app.IncomingMessageInterstitial"
+        <activity android:name=".app.notification.IncomingMessageInterstitial"
                 android:label="You have messages"
                 android:theme="@style/ThemeHoloDialog"
                 android:launchMode="singleTask"
@@ -751,7 +751,7 @@
              from StatusBarNotifications.  Note the configuration here so
              that the activity layers on top of whatever the user is doing,
              allowing them to press back to return. -->
-        <activity android:name=".app.NotificationDisplay"
+        <activity android:name=".app.notification.NotificationDisplay"
                 android:theme="@style/Theme.Transparent"
                 android:taskAffinity=""
                 android:excludeFromRecents="true"
@@ -767,9 +767,9 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".app.NotifyingService" />
+        <service android:name=".app.notification.NotifyingService" />
 
-        <activity android:name=".app.NotifyingController" android:label="App/Notification/Notifying Service Controller">
+        <activity android:name=".app.notification.NotifyingController" android:label="App/Notification/Notifying Service Controller">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -777,7 +777,7 @@
         </activity>
 
         <!-- Dialog samples -->
-        <activity android:name=".app.AlertDialogSamples" android:label="@string/activity_alert_dialog">
+        <activity android:name=".app.dialog.AlertDialogSamples" android:label="@string/activity_alert_dialog">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.SAMPLE_CODE" />
