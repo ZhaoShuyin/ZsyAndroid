@@ -1,0 +1,3 @@
+使用SDK生成签名文件
+
+keytool -importkeystore -srckeystore D:\Projects\User\zsy.jks -destkeystore D:\Projects\User\zsy.jks -deststoretype pkcs12

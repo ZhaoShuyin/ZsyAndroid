@@ -1,0 +1,3 @@
+
+插入一行
+insert into yonghu (name,age) values ('王五',13);

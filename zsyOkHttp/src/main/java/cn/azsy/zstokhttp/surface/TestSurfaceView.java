@@ -73,7 +73,8 @@ public class TestSurfaceView extends SurfaceView implements SurfaceHolder.Callba
             int count = 0;
             while (isRun) {
                 Canvas canvas = null;
-                try {
+                try {]
+
                     synchronized (holder) {
                         canvas = holder.lockCanvas();// 锁定画布，一般在锁定后就可以通过其返回的画布对象Canvas，在其上面画图等操作了。
                         canvas.drawColor(Color.BLACK);// 设置画布背景颜色

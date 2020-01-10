@@ -1,0 +1,36 @@
+Failed to download 'http://download.jetbrains.com/idea/j2ee_libs/JavaEE/6/javax.ejb.jar':
+download.jetbrains.com
+
+创建SSM
+https://www.cnblogs.com/toutou/p/ssm_spring.html
+
+加: module名称 :war exploded
+
+
+
+1首先Modules 配置添加 Artifacts
+       Web Application exploded : form modlues
+       添加 Artifacts
+    问题:
+
+2.配置Tomcat 加>Tomcat Server: local
+   编辑 deployment
+   加: module名称 :war exploded
+
+   archetypeCatalog=internal
+
+
+   https://www.cnblogs.com/yeya/p/10320885.html       SSM搭建1
+   https://www.cnblogs.com/toutou/p/ssm_spring.html   SSM搭建2
+
+
+   https://blog.csdn.net/qq598535550/article/details/51703190 idea ssm搭建
+
+
+   https://how2j.cn/k/ssm/ssm-tutorial/1137.html?tid=77 学习网站
+
+   https://blog.csdn.net/qq1501340219/article/details/54638158  使用maven代理
+
+   https://www.cnblogs.com/hellxz/p/8891650.html   导入多module 的 maven项目
+
+    创建多module 的maven项目https://blog.csdn.net/sinat_30160727/article/details/78109769

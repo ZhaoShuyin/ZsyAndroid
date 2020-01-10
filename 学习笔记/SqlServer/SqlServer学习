@@ -1,0 +1,47 @@
+https://blog.csdn.net/staunchkai/article/details/78975865
+
+
+
+	https://blog.csdn.net/hualele/article/details/79310823
+
+
+	SQL Server
+	https://blog.csdn.net/liuxiangyang_/article/details/89082518
+
+	C:\Program Files\Microsoft SQL Server\100\Setup Bootstrap\Log\20200103_154324\ConfigurationFile.ini
+
+	IP1
+	fe80::29b3:a77f:48dc:f41a%14
+
+	IP10
+    ::1
+
+一: 开启/停止服务(发生系统错误 5 管理员权限)
+	net stop mssqlserver
+	net start mssqlserver
+
+
+    查看所有数据库
+    SELECT NAME FROM sys.sysdatabases
+
+    创建数据库
+    create database zsydb
+
+    删除数据库
+    (设置该数据库为单用户模式)
+    * alter database dbname
+    * set single_user with rollback immediate
+    * go
+    * drop database dbname
+    * go
+
+
+	JAVA 连接 SQLserver
+	https://www.cnblogs.com/chenlove/p/9159227.html
+
+
+
+https://blog.csdn.net/qq_38188485/article/details/78453081
+
+已成功与服务器建立连接，但是在登录过程中发生错误。 (provider: 共享内存提供程序, error: 0 - 管道的另一端上无任何进程。)
+ (Microsoft SQL Server，错误: 233)

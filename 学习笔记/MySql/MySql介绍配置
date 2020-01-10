@@ -1,0 +1,41 @@
+https://blog.csdn.net/clouderpig/article/details/79556149
+
+#Path to installation directory. All paths are usually resolved relative to this.
+basedir="E:/Program Files/MySQL/MySQL Server 5.5/"
+
+#Path to the database root
+datadir="C:/ProgramData/MySQL/MySQL Server 5.5/Data/"
+
+//删除注册表
+HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\services\eventlog\Application\MySQL
+
+
+//环境变量
+C:\Users\apache-ant-1.10.1\bin;C:\ProgramData\Oracle\Java\javapath;E:\Android\sdk\platform-tools\;E:\Android\sdk\tools\;%JAVA_HOME%\bin;%NDK%;%CATALINA_HOME%\bin;%ANDROID_BUNDLE%;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;E:\Program Files\MySQL\MySQL Server 5.5\bin
+
+C:\Users\apache-ant-1.10.1\bin;C:\ProgramData\Oracle\Java\javapath;E:\Android\sdk\platform-tools\;E:\Android\sdk\tools\;%JAVA_HOME%\bin;%NDK%;%CATALINA_HOME%\bin;%ANDROID_BUNDLE%;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;E:\MySQL\MySQL Server 5.5\bin
+
+
+MySql 命令 Windows不区分大小写 Linux 严格区分大小写
+
+
+1 数据库为持久化数据储存
+
+2 层次结构型数据库(树状单级结构)
+    例如:html 标签型
+
+3 网状结构型数据库
+
+4 关系型结构数据库(二维表格结构)
+
+    Oracle
+    Sql Server
+    MySql
+    Sqlite
+    ProstgerSql (面向对象数据库)
+    Access
+
+5 Sql (结构化查询语言 一般关系型数据库支持)
+
+  Sql语句
+

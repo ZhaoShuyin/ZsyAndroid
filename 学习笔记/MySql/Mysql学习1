@@ -1,21 +1,3 @@
-#Path to installation directory. All paths are usually resolved relative to this.
-basedir="E:/Program Files/MySQL/MySQL Server 5.5/"
-
-#Path to the database root
-datadir="C:/ProgramData/MySQL/MySQL Server 5.5/Data/"
-
-//删除注册表
-HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\services\eventlog\Application\MySQL
-
-//环境变量
-C:\Users\apache-ant-1.10.1\bin;C:\ProgramData\Oracle\Java\javapath;E:\Android\sdk\platform-tools\;E:\Android\sdk\tools\;%JAVA_HOME%\bin;%NDK%;%CATALINA_HOME%\bin;%ANDROID_BUNDLE%;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;E:\Program Files\MySQL\MySQL Server 5.5\bin
-
-C:\Users\apache-ant-1.10.1\bin;C:\ProgramData\Oracle\Java\javapath;E:\Android\sdk\platform-tools\;E:\Android\sdk\tools\;%JAVA_HOME%\bin;%NDK%;%CATALINA_HOME%\bin;%ANDROID_BUNDLE%;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;E:\MySQL\MySQL Server 5.5\bin
-
-
-MySql 命令 Windom不区分大小写 Linux 严格区分大小写
-
-//
 登录MySql(环境标量已配置)
 W: mysql -uroot -p123
 L: mysql -uroot -p
@@ -23,113 +5,148 @@ L: mysql -uroot -p
 ***//查看所有数据库
 SHOW DATABASES;
 
+=======================================database基本操作=============================================++++++++==================================
 ***//创建数据库
-create database mydb1;//if not exists mybd1;
-CREATE DATABASE mydb1;//IF NOT EXISTS mybd1
+  create database mydb1;// create database if not exists mybd1;
+  CREATE DATABASE mydb1;// CREATE DATABASE IF NOT EXISTS mybd1
 
 //查看数据库创建细节
-SHOW CREATE DATABASE mydb1;
+  SHOW CREATE DATABASE mydb1;
 
 //创建时使用指定编码
-CREATE DATABASE mydb2 CHARACTE R SET GBK;
+  CREATE DATABASE mydb2 CHARACTE R SET GBK;
 
 //查看gbk字符集下,校验规则
-SHOW COLLATION LIKE 'gbk';(响应Empty set (0.00 sec))
+  SHOW COLLATION LIKE 'gbk';(响应Empty set (0.00 sec))
 
 //创建带校验规则的数据库
-CREATE DATABASE mydb3 CHARACTER SET GBK COLLATE gbk_chinese_ci;
+  CREATE DATABASE mydb3 CHARACTER SET GBK COLLATE gbk_chinese_ci;
 
 ***//删除某数据库
-DROP DATABASE mydb3;
+  DROP DATABASE mydb3;
 
 ***//修改数据库
-ALTER DATABASE mydb1 CHARACTER SET utf8;
-ALTER DATABASE mydb2 CHARACTER SET utf8;
+  ALTER DATABASE mydb1 CHARACTER SET utf8;
+  ALTER DATABASE mydb2 CHARACTER SET utf8;
+=======================================database基本操作===============================================++++++++++================================
 
 
-=====================================
-BLOB 二进制大对象  CLOB 文本大对象
+==============================================表操作=============================================================++============================
+*********数据类型**********************************************************************************
+ * BIT(M)	                            位类型。M指定位数，默认值1，范围1-64                         *
+ * TINYINT [UNSIGNED] [ZEROFILL] 	    带符号的范围是-128到127。无符号0到255。                      *
+ * BOOL，BOOLEAN 	                    使用0或1表示真或假                                          *
+ * SMALLINT [UNSIGNED] [ZEROFILL] 	    2的16次方                                                  *
+ * INT [UNSIGNED] [ZEROFILL] 	        2的32次方                                                  *
+ * BIGINT [UNSIGNED] [ZEROFILL] 	    2的64次方                                                  *
+ * FLOAT[(M,D)] [UNSIGNED] [ZEROFILL] 	M指定显示长度，d指定小数位数                                  *
+ * DOUBLE[(M,D)][UNSIGNED][ZEROFILL]	表示比float精度更大的小数                                    *
+ * CHAR(最大长度) 	                    固定长度字符串                                              *
+ * VARCHAR(最大长度)  	                可变长度字符串                                              *
+ * BLOB   LONGBLOB	                    二进制数据 (二进制大对象)                                    *
+ * TEXT(clob)     LONGTEXT(longclob)	大文本    (文本大对象)                                      *
+ * DATE/DATETIME/TimeStamp	            日期类型(YYYY-MM-DD)  (YYYY-MM-DD HH:MM:SS)，              *
+                                        TimeStamp表示时间戳，它可用于自动记录insert、update操作的时间  *
+*********数据类型***********************************************************************************
+
 //创建表
-CREATE TABLE employee(
-id INT,
-name VARCHAR(100),
-gender VARCHAR(10),
-brithday DATE,
-entry_date DATE,
-job VARCHAR(100),
-salary FLOAT(7,2),
-resume LONGTEXT);
+    CREATE TABLE 表名(
+    id INT,
+    name VARCHAR(100),
+    gender VARCHAR(10),
+    brithday DATE,
+    entry_date DATE,
+    job VARCHAR(100),
+    salary FLOAT(7,2),
+    resume LONGTEXT);
 
+****************常规操作************************************************
+*//插入                                                                *
+*  insert into 表名 values(1,2,3,4,5,6);                               *
+*  insert into 表名 ( a, b ) values ( 1,2 );                           *
+*//删除                                                                *
+*  delete from 表名 [where 子句]                                        *
+*//修改                                                                *
+*  UPDATE table_name SET field1=1, field2=2 [WHERE 子句]               *
+*//查询                                                                *
+*  select * from 表名                                                  *
+*  select 列名1,列名2 from 表名 [where 子句] [limit n][ offset m]        *
+*  select 列1, 列2 from 表1, 表2 order by 列1 [asc/desc],列2 [asc/desc] *
+*                      where between  10 and 20                        *
+*                      where 列 in (10,15,20)                          *
+*                      where 列 like  'a%'                             *
+****************常规操作*************************************************
+
+****************列操作***************************************
+*//添加一列                                                 *
+*   alter table emp add column image blob;                 *
+*//修改name列，使其长度为60。                                 *
+*   alter table emp modify column name varchar(60);        *
+*//列名修改为。                                              *
+*   alter table 表名 change 列名1 列名2 varchar(50);         *
+*//删除image列。                                            *
+*   alter table emp drop column birthday;                  *
+****************列操作***************************************
+
+//删除表所有数据只是删除数据
+  mysql> delete from 表名;
+//使用truncate,重置表
+  mysql>truncate table 表名
+
+//常规查询
+select 列名1 from 表名;
+//常规查询排除重复数据
+select distinct 列名1 from 表名;
+
+****************表属性******************
+//表名修改
+alter table 旧名 rename to 新名;
+rename table 旧名 to 新名;
+//修改表的字符集为utf8(修改编码结构)。
+alter table 表名 character set utf8;
 //查看表
 DESC employee;
-//修改表结构(添加一列)
-alter table emp add column image blob;
-
-//在上面员工表的基本上增加一个image列。
-alter table emp add column image blob;()
-//修改job列，使其长度为60。
-alter table emp modify column name varchar(60);
-//删除image列。
-alter table emp drop column birthday;
-//表名修改
-alter table emp rename to user;
-rename table user to emp;
-//修改表的字符集为utf8(修改编码结构)。
-alter table emp character set utf8;
-//列名name修改为username。
-alter table emp change name username varchar(50);
-//
-show create table emp;
-
-================================
-表操作
-//
-//插入数值
-insert into employee value(1,'zhangsan','nan','1999-01-01','1999-01-02','ceo',90000,'hello');
-//查询插入结果
-select * from employee
-
-======================================
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(32) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+//显示表信息
+show create table 表名;
+//在MySQL中一共有6个地方使用了字符集,通过命令查看
 show variables like 'character%';
+show variables like "%char%";
++--------------------------+-------------------------------------------------------+
+| Variable_name            | Value                                                 |
++--------------------------+-------------------------------------------------------+
+| character_set_client     | utf8mb4                                               |
+| character_set_connection | utf8mb4                                               |
+| character_set_database   | latin1                                                |
+| character_set_filesystem | binary                                                |
+| character_set_results    | utf8mb4                                               |
+| character_set_server     | latin1                                                |
+| character_set_system     | utf8                                                  |
+| character_sets_dir       | C:\ProgramUser\MySQL\MySQL Server 5.5\share\charsets\ |
++--------------------------+-------------------------------------------------------+
+//以某编码接收以默认编码储存,再以设置编码输出;(单次连接有效)
+  set character_set_client=utf8;
+//设置取出显示结果集用gbk编码：
+  set character_set_results=utf8;
+****************表属性******************
 
-//单次连接有效
-//设置MySql以某编码接收以默认编码储存,再以设置编码输出;
-修改客户端的字符集：
-  set character_set_client=gbk;
-//设置结果集用gbk编码：
-  set character_set_results=gbk;
-
-=========================
-//修改
-update employee set job='cbc',brithday='1988-01-08' where name='lisi';
-
-//删除重建
-delete from emp;
-使用truncate删除表中记录。
-
-
-
-=============================================================
-//
-select english from student;
-//剔除重复数据
-select distinct english from student;
+==============================================表操作========================================================+++++++===========================
 
 
-==============================================================
-
+===============================================文件配置=======================================================================================
+C:\ProgramUser\MySQL\MySQL Server 5.5\my.ini文件
 
 //修改MySql编码
-//首先查看
-show variables like "%char%";
-
-在mysql安装目录下找到my.ini文件
-在其中添加
-
+//default-character-set=utf8
 //暂时无法使用
 //[client]
 //default-character-set=utf8
-
 //仅使用此设置即可
 在[mysqld]下添加
 character-set-server=utf8
+===============================================文件配置=======================================================================================
