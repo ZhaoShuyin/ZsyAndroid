@@ -67,7 +67,7 @@ SHOW DATABASES;
 *//删除                                                                *
 *  delete from 表名 [where 子句]                                        *
 *//修改                                                                *
-*  UPDATE table_name SET field1=1, field2=2 [WHERE 子句]               *
+*  update table_name SET field1=1, field2=2 [WHERE 子句]               *
 *//查询                                                                *
 *  select * from 表名                                                  *
 *  select 列名1,列名2 from 表名 [where 子句] [limit n][ offset m]        *

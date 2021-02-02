@@ -11,11 +11,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.assist.util.NotifyUtil;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 //import com.zsy.mavenlib.TestUtil;
@@ -84,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 getContentResolver().unregisterContentObserver(observer);
             }
         });
+        NotifyUtil.init(this);
     }
 
     private MyObserver observer;
@@ -130,6 +136,57 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    public void notifyA(View view) {
+        NotifyUtil.SimpleNotification("标题", "简单");
+    }
+
+    public void notifyB(View view) {
+        Intent intent = new Intent();
+        intent.setClass(this, CallAidlActivity.class);
+        NotifyUtil.IntentNotification("标题", "意图", intent);
+    }
+
+    public void notifyC(View view) {
+        Intent intent = new Intent();
+        intent.setClass(this, CallAidlActivity.class);
+        NotifyUtil.ProgressNotification("标题", ++id);
+    }
+
+    public void notifyD(View view) {
+        Intent intent = new Intent();
+        intent.setClass(this, CallAidlActivity.class);
+        NotifyUtil.FixedNotification("标题", "固定通知", intent);
+    }
+
+    public void notifyE(View view) {
+        Intent intent = new Intent();
+        intent.setClass(this, CallAidlActivity.class);
+        List<String> list = new ArrayList<>();
+        list.add("1");
+        list.add("2");
+        list.add("3");
+        NotifyUtil.InboxNotification(
+                "title",
+                "text",
+                "lineTitle",
+                "summaryText",
+                list,
+                intent);
+    }
+
+    int id;
+
+    public void notifyF(View view) {
+        NotifyUtil.clearNotification(++id);
+        Toast.makeText(this, "取消" + id, Toast.LENGTH_SHORT).show();
+    }
+
+
+    public void notifyG(View view) {
+        NotifyUtil.createAllNotificationChannels(this);
     }
 
 }

@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +35,7 @@ public class RouterUtil {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.FROYO)
     public static void init(Context context) {
         PackageManager pm = context.getPackageManager();
         PackageInfo info = pm.getPackageArchiveInfo(context.getPackageCodePath(), PackageManager.GET_ACTIVITIES);

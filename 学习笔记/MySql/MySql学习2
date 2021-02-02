@@ -59,6 +59,9 @@ mysql> desc t3;
 *  );                                                       *
 ***********************列约束*********************************
 
+//删除主表数据时,同时删除从表相关外键数据
+ 语法 on delete cascade on update cascade
+(delete t1,t2 from t1 right join t2 on t1.id=t2.id where t1.id=1;)
 
 *******************************主表-从表主键:外键(一主表多从表)***************************************
 *  主表中的主键被从表中的一个字段引用,在从表中,该字段被称为外键
@@ -279,7 +282,9 @@ mysql> desc t3;
 ========================数据库文件的备份和恢复===============================
   //导出
   mysqldump -h localhost -p3306 -uroot -p123456 test > d:\mydb.sql --default-character-set=gbk
+
   //导入
+  https://www.cnblogs.com/xfgnongmin/p/10658575.html
   //(先使用数据库 use database 库名)
   mysql> use mydb;
   mysql> source d:/mydb.sql

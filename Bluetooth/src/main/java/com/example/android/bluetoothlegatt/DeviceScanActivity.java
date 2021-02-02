@@ -24,8 +24,11 @@ import android.bluetooth.BluetoothManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.RequiresApi;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,9 +40,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Activity for scanning and displaying available Bluetooth LE devices.
+ * 扫描显示BLE蓝牙设备的界面
  */
 public class DeviceScanActivity extends ListActivity {
     private LeDeviceListAdapter mLeDeviceListAdapter;
@@ -57,8 +62,7 @@ public class DeviceScanActivity extends ListActivity {
         getActionBar().setTitle(R.string.title_devices);
         mHandler = new Handler();
 
-        // Use this check to determine whether BLE is supported on the device.  Then you can
-        // selectively disable BLE-related features.
+        // 检测是否支持BLE
         if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
             Toast.makeText(this, R.string.ble_not_supported, Toast.LENGTH_SHORT).show();
             finish();
@@ -124,7 +128,7 @@ public class DeviceScanActivity extends ListActivity {
         // Initializes list view adapter.
         mLeDeviceListAdapter = new LeDeviceListAdapter();
         setListAdapter(mLeDeviceListAdapter);
-        scanLeDevice(true);
+//        scanLeDevice(true);
     }
 
     @Override
@@ -140,7 +144,7 @@ public class DeviceScanActivity extends ListActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        scanLeDevice(false);
+//        scanLeDevice(false);
         mLeDeviceListAdapter.clear();
     }
 
@@ -152,12 +156,16 @@ public class DeviceScanActivity extends ListActivity {
         intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_NAME, device.getName());
         intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_ADDRESS, device.getAddress());
         if (mScanning) {
-            mBluetoothAdapter.stopLeScan(mLeScanCallback);
+            mBluetoothAdapter.stopLeScan(mLeScanCallback);    //停止扫描低功耗蓝牙设备
             mScanning = false;
         }
         startActivity(intent);
     }
 
+    /**
+     * 开始/停止 扫描蓝牙设备
+     * @param enable
+     */
     private void scanLeDevice(final boolean enable) {
         if (enable) {
             // Stops scanning after a pre-defined scan period.
@@ -165,16 +173,19 @@ public class DeviceScanActivity extends ListActivity {
                 @Override
                 public void run() {
                     mScanning = false;
-                    mBluetoothAdapter.stopLeScan(mLeScanCallback);
+                    Log.e(TAG,"停止扫描");
+                    mBluetoothAdapter.stopLeScan(mLeScanCallback); //停止扫描低功耗蓝牙设备
                     invalidateOptionsMenu();
                 }
             }, SCAN_PERIOD);
 
             mScanning = true;
-            mBluetoothAdapter.startLeScan(mLeScanCallback);
+            Log.e(TAG,"开始扫描");
+            mBluetoothAdapter.startLeScan(mLeScanCallback); //开始扫描低功耗蓝牙设备
         } else {
             mScanning = false;
-            mBluetoothAdapter.stopLeScan(mLeScanCallback);
+            Log.e(TAG,"停止扫描");
+            mBluetoothAdapter.stopLeScan(mLeScanCallback); //停止扫描低功耗蓝牙设备
         }
         invalidateOptionsMenu();
     }
@@ -245,12 +256,15 @@ public class DeviceScanActivity extends ListActivity {
         }
     }
 
+    private String TAG = "BLETest";
     // Device scan callback.
     private BluetoothAdapter.LeScanCallback mLeScanCallback =
             new BluetoothAdapter.LeScanCallback() {
 
+        @RequiresApi(api = Build.VERSION_CODES.ECLAIR)
         @Override
         public void onLeScan(final BluetoothDevice device, int rssi, byte[] scanRecord) {
+            Log.e(TAG, "device: (" + device.getName() + " " + device.getAddress() + ")  rssi:" + rssi + " scanRecord:" + Arrays.toString(scanRecord));
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {

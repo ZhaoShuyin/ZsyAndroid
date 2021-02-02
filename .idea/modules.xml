@@ -9,6 +9,8 @@
       <module fileurl="file://$PROJECT_DIR$/assist/assist.iml" filepath="$PROJECT_DIR$/assist/assist.iml" />
       <module fileurl="file://$PROJECT_DIR$/jnidemo/jnidemo.iml" filepath="$PROJECT_DIR$/jnidemo/jnidemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/mavenlib/mavenlib.iml" filepath="$PROJECT_DIR$/mavenlib/mavenlib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mvp/mvp.iml" filepath="$PROJECT_DIR$/mvp/mvp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mvp-demo/mvp-demo.iml" filepath="$PROJECT_DIR$/mvp-demo/mvp-demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/rxokretrofit/rxokretrofit.iml" filepath="$PROJECT_DIR$/rxokretrofit/rxokretrofit.iml" />
       <module fileurl="file://$PROJECT_DIR$/structure/structure.iml" filepath="$PROJECT_DIR$/structure/structure.iml" />
       <module fileurl="file://$PROJECT_DIR$/vitamio_lib/vitamio_lib.iml" filepath="$PROJECT_DIR$/vitamio_lib/vitamio_lib.iml" />

@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         observerFilter();
     }
 
-
+    //测试
     public void Test() {
         Observable
                 .create(new Observable.OnSubscribe<String>() {

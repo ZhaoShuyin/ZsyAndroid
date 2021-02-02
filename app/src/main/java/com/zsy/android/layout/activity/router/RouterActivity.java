@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import android.widget.TextView;
 
 /**
- * Title: ZsyAndroid
+ * Title: 通过Router,不使用Activity.class跳转界面
  * <p>
  * Description:
  * </p>
@@ -15,7 +15,7 @@ import android.widget.TextView;
  * @date 2019/7/30 9:26
  */
 @RouterNode(host = "other")
-public class ActivityRouter extends Activity {
+public class RouterActivity extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

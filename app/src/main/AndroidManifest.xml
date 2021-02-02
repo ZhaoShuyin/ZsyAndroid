@@ -127,7 +127,7 @@
 
 
         <!--通过Router跳转不知名Activity-->
-        <activity android:name=".layout.activity.router.ActivityRouter" />
+        <activity android:name=".layout.activity.router.RouterActivity" />
 
         <!--文字自动补全-->
         <activity android:name=".api.view.ApiActivity">
