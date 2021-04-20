@@ -8,13 +8,11 @@ import io.reactivex.rxjava3.core.Observable;
 
 
 /**
- * @author azheng
- * @date 2018/6/4.
- * GitHub：https://github.com/RookieExaminer
- * Email：wei.azheng@foxmail.com
- * Description：
+ *
  */
 public interface MainContract {
+
+
     interface Model {
         Observable<BaseObjectBean<LoginBean>> login(String username, String password);
     }

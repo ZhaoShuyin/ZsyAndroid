@@ -15,7 +15,7 @@ android {
 
         //ndk_build方式
         //设置JNI参数
-        /*ndk {
+      /*  ndk {
             //armeabi 在新版本已被弃用,可能会报错
             abiFilters "armeabi-v7a", "x86"  //输出指定三种abi体系结构下的so库。目前可有可无。
             moduleName = 'zsyso'//生成的so名字,只能有一个名字
@@ -29,6 +29,7 @@ android {
                 //  jniLibs.srcDirs=['libs'] 此为设置so库文件位置
             }
         }*/
+
 
         //Cmake方式
         //有关 C++ 异常处理的支持 (有关 C++ 异常处理的支持)
@@ -50,10 +51,12 @@ android {
 
         //NDK编译配置
         externalNativeBuild {
+
             //ndk_build方式(从.main/jni/文件夹下执行C编译)
-           /* ndkBuild {
+            /*ndkBuild {
                 path "src/main/jni/Android.mk"
             }*/
+
             //Cmake方式(从.main/app/文件夹下执行C编译)
             cmake {
                 path "CMakeLists.txt"

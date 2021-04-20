@@ -7,13 +7,18 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.zsy.mvp.net.BaseObjectBean;
-import com.zsy.mvp.net.LoginBean;
+import com.zsy.mvp.bean.BaseObjectBean;
+import com.zsy.mvp.bean.LoginBean;
+import com.zsy.mvp.net.ApiService;
 import com.zsy.mvp.net.Net;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 public class MainActivity extends Activity {
 
@@ -33,7 +38,7 @@ public class MainActivity extends Activity {
 
     @OnClick(R.id.bt_retrofit)
     public void onViewClicked() {
-        BaseObjectBean objectBean = new BaseObjectBean<LoginBean>();
+      /*  BaseObjectBean objectBean = new BaseObjectBean<LoginBean>();
         objectBean.setErrorCode(101);
         objectBean.setErrorMsg("错误信息");
         LoginBean result = new LoginBean();
@@ -43,6 +48,34 @@ public class MainActivity extends Activity {
         result.setUsername("用户名称");
         result.setPassword("123456");
         objectBean.setResult(result);
-        Log.e("NETNET",new Gson().toJson(objectBean));
+        Log.e("NETNET",new Gson().toJson(objectBean));*/
+        ApiService service = Net.getApi(ApiService.class);
+        Observable<BaseObjectBean<LoginBean>> login = service.login("1", "1");
+        Log.e("NETNET", "login: " + login);
+
+        login.subscribe(new Observer<BaseObjectBean<LoginBean>>() {
+            @Override
+            public void onSubscribe(@NonNull Disposable d) {
+                Log.e("NETNET", "onSubscribe: " + d.toString());
+            }
+
+            @Override
+            public void onNext(@NonNull BaseObjectBean<LoginBean> bean) {
+                Log.e("NETNET", "onNext: " + bean);
+                if (bean != null) {
+                    Log.e("NETNET", "Gson: " + new Gson().toJson(bean));
+                }
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+                Log.e("NETNET", "onError: " + e.toString());
+            }
+
+            @Override
+            public void onComplete() {
+                Log.e("NETNET", "onComplete: ");
+            }
+        });
     }
 }

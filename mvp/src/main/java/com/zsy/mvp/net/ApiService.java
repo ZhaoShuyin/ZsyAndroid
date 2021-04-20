@@ -1,5 +1,8 @@
 package com.zsy.mvp.net;
 
+import com.zsy.mvp.bean.BaseObjectBean;
+import com.zsy.mvp.bean.LoginBean;
+
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -20,7 +23,7 @@ public interface ApiService {
      * @return
      */
     @FormUrlEncoded
-    @POST("user/login")
+    @POST("web")
     Observable<BaseObjectBean<LoginBean>> login(@Field("username") String username,
                                                 @Field("password") String password);
 }
